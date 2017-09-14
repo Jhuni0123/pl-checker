@@ -14,7 +14,7 @@ type testcase =
 let runner (tc: testcase): bool =
     match tc with
     | ADD (i1, i2, o) -> natadd ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
-    | MUL (i1, i2, o) -> natmul ((nat_of_int i1), (nat_of_int i1)) = (nat_of_int o)
+    | MUL (i1, i2, o) -> natmul ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
 
 let rec run tcs correct total =
     match tcs with
@@ -26,7 +26,17 @@ let rec run tcs correct total =
                 else run tcs' correct (total+1)
 
 let testcases: testcase list =
-    [
+    [ ADD (0,0,0)
+    ; ADD (1,1,2)
+    ; ADD (10,20,30)
+    ; ADD (0,100,100)
+    ; ADD (17,31,48)
+    ; MUL (0,1,0)
+    ; MUL (1,0,0)
+    ; MUL (1,1,1)
+    ; MUL (10,2,20)
+    ; MUL (17,31,527)
+    ; MUL (2,16,32)
     ]
 
 let () = print_endline "# Test Exercise 4"
