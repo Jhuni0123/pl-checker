@@ -1,0 +1,10 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_list = lf
+trim_trailing_whitespace = true
+
+[*.ml]
+indent_size = 4
+indent_style = space
