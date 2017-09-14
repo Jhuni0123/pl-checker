@@ -23,6 +23,9 @@ let testcases: testcase list =
     ; SIGMA (10, 10, (fun x -> x*x), 100)
     ; SIGMA (5, 5, (fun x -> x+x*x*2), 55)
     ; SIGMA (2, 1, (fun x -> x + 1 + x*x), 0)
+    ; SIGMA (-1000, 1000, (fun x -> x*x*x), 0)
+    ; SIGMA (-100, -1000, (fun _ -> 1), 0)
+    ; SIGMA (-10000, 0, (fun x -> abs x), 50005000)
     ]
 
 let () = print_endline "# Test Exercise 2"
