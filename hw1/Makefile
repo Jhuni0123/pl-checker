@@ -31,7 +31,6 @@ else
   ifeq (1, $(CORRECT_EX))
 	@echo "# Compiling Exercise $(EX)"
 	@ocamlc -o ex$(EX).out testlib.ml ex$(EX).ml test$(EX).ml
-	@echo "# Testing Exercise $(EX)"
 	@./ex$(EX).out
   else
 	@echo "Exercise $(EX) not found."
