@@ -16,15 +16,6 @@ let runner (tc: testcase): bool =
     | ADD (i1, i2, o) -> natadd ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
     | MUL (i1, i2, o) -> natmul ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
 
-let rec run tcs correct total =
-    match tcs with
-    | [] -> print_endline (string_of_frac correct total)
-    | tc::tcs' ->
-            let cor = runner tc in
-            let () = print_endline (res_string cor (total+1))
-            in if cor then run tcs' (correct+1) (total+1)
-                else run tcs' correct (total+1)
-
 let testcases: testcase list =
     [ ADD (0,0,0)
     ; ADD (1,1,2)
@@ -39,5 +30,5 @@ let testcases: testcase list =
     ; MUL (2,16,32)
     ]
 
-let () = print_endline "# Test Exercise 4"
-let () = run testcases 0 0
+let _ = print_endline "# Test Exercise 4"
+let _ = print_result (List.map runner testcases) 0 0

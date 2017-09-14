@@ -15,15 +15,6 @@ let runner (tc: testcase): bool =
     | FLOAT(n, f, x, o) -> iter (n,f) x = o
     | BOOL(n, f, x, o) -> iter (n,f) x = o
 
-let rec run tcs correct total =
-    match tcs with
-    | [] -> print_endline (string_of_frac correct total)
-    | tc::tcs' ->
-            let cor = runner tc in
-            let () = print_endline (res_string cor (total+1))
-            in if cor then run tcs' (correct+1) (total+1)
-                else run tcs' correct (total+1)
-
 let testcases: testcase list =
     [ INT (10, (fun x -> x+1), 0, 10)
     ; STRING (10, (fun x -> x ^ "a"), "", "aaaaaaaaaa")
@@ -32,5 +23,5 @@ let testcases: testcase list =
     ; BOOL (123, (fun x -> not x), true, false)
     ]
 
-let () = print_endline "# Test Exercise 3"
-let () = run testcases 0 0
+let _ = print_endline "# Test Exercise 3"
+let _ = print_result (List.map runner testcases) 0 0
