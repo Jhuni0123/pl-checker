@@ -36,6 +36,7 @@ else
 	@echo "Exercise $(EX) not found."
   endif
 endif
+	@make clean
 
 clean:
-	rm -f *.cmo *.cmi *.out
+	@rm -f *.cmo *.cmi *.out
