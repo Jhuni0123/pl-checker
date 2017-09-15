@@ -24,4 +24,4 @@ let testcases: testcase list =
 
 let _ = print_endline "# Test Exercise 1"
 let result = List.map runner testcases
-let _ = print_result result 0
+let _ = print_result result

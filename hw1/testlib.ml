@@ -17,13 +17,15 @@ let res_string (cor: bool) (n: int) =
 let rate_of_result res =
     (List.length (List.filter (fun x -> x) res), List.length res)
 
-let rec print_result res num =
-    match res with
-    | [] -> print_endline ("Passed " ^ (string_of_frac (rate_of_result res)))
-    | h::res' ->
-            let _ = print_endline (res_string h num)
-            in if h then print_result res' (num+1)
-            else print_result res' (num+1)
+let print_result res =
+    let rec print_result_ res pass total =
+        match res with
+        | [] -> print_endline ("Passed " ^ (string_of_frac (pass, total)))
+        | h::res' ->
+                let _ = print_endline (res_string h (total+1))
+                in if h then print_result_ res' (pass+1) (total+1)
+                else print_result_ res' pass (total+1)
+    in print_result_ res 0 0
 
 let print_summary rs num =
     let rec print_summary_ rs num =
