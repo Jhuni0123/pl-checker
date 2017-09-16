@@ -5,8 +5,8 @@ ifeq (,$(MAKECMDGOALS))
   EX :=
 else
   ifeq (test, $(firstword $(MAKECMDGOALS)))
-    EX := $(word 2,$(MAKECMDGOALS))
-    $(eval $(EX):;@:)
+  EX := $(word 2,$(MAKECMDGOALS))
+  $(eval $(EX):;@:)
   endif
 endif
 
