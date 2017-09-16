@@ -32,6 +32,4 @@ let testcases: testcase list =
     ; MUL (2,16,32)
     ]
 
-let _ =
-    ( if Array.length Sys.argv = 1 then test_exercise else summary_exercise )
-    testcases runner exnum
+let _ = wrapper testcases runner exnum

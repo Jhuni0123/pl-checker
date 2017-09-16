@@ -37,10 +37,16 @@ let test_exercise tcs runner exnum =
         | tc::tcs' ->
                 let _ = test_testcase tc runner tcnum
                 in test_exercise_ tcs' runner (tcnum+1)
-    in test_exercise_ tcs runner 0
+    in test_exercise_ tcs runner 1
 
 let summary_exercise tcs runner exnum =
     let _ = printf "# Test Exercise %d\n" exnum in
     let total = List.length tcs in
     let passed = List.length (List.filter runner tcs) in
     printf "- Passed %d/%d Cases %s\n" passed total (if passed = total then correctSymbol else wrongSymbol)
+
+let wrapper =
+    if Array.length Sys.argv = 1 then
+        test_exercise
+    else
+        summary_exercise

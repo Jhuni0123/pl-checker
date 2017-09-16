@@ -25,6 +25,4 @@ let testcases: testcase list =
     ; BOOL (123, (fun x -> not x), true, false)
     ]
 
-let _ =
-    ( if Array.length Sys.argv = 1 then test_exercise else summary_exercise )
-    testcases runner exnum
+let _ = wrapper testcases runner exnum
