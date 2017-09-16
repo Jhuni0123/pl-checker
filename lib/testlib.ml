@@ -50,3 +50,14 @@ let wrapper =
         test_exercise
     else
         summary_exercise
+
+module type ExTest =
+    sig
+        type testcase
+
+        val exnum: int
+
+        val testcases: testcase list
+        val runner: testcase -> bool
+    end
+

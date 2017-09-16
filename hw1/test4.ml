@@ -2,34 +2,38 @@
 open Ex4
 open Testlib
 
-let exnum = 4
+module ExTest4 =
+    struct
+        let exnum = 4
 
-let rec nat_of_int (n: int): nat =
-    match n with
-    | 0 -> ZERO
-    | n' -> SUCC (nat_of_int (n'-1))
+        let rec nat_of_int (n: int): nat =
+            match n with
+            | 0 -> ZERO
+            | n' -> SUCC (nat_of_int (n'-1))
 
-type testcase =
-    | ADD of int * int * int
-    | MUL of int * int * int
+        type testcase =
+            | ADD of int * int * int
+            | MUL of int * int * int
 
-let runner (tc: testcase): bool =
-    match tc with
-    | ADD (i1, i2, o) -> natadd ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
-    | MUL (i1, i2, o) -> natmul ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
+        let runner (tc: testcase): bool =
+            match tc with
+            | ADD (i1, i2, o) -> natadd ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
+            | MUL (i1, i2, o) -> natmul ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
 
-let testcases: testcase list =
-    [ ADD (0,0,0)
-    ; ADD (1,1,2)
-    ; ADD (10,20,30)
-    ; ADD (0,100,100)
-    ; ADD (17,31,48)
-    ; MUL (0,1,0)
-    ; MUL (1,0,0)
-    ; MUL (1,1,1)
-    ; MUL (10,2,20)
-    ; MUL (17,31,527)
-    ; MUL (2,16,32)
-    ]
+        let testcases: testcase list =
+            [ ADD (0,0,0)
+            ; ADD (1,1,2)
+            ; ADD (10,20,30)
+            ; ADD (0,100,100)
+            ; ADD (17,31,48)
+            ; MUL (0,1,0)
+            ; MUL (1,0,0)
+            ; MUL (1,1,1)
+            ; MUL (10,2,20)
+            ; MUL (17,31,527)
+            ; MUL (2,16,32)
+            ]
+    end
 
+open ExTest4
 let _ = wrapper testcases runner exnum
