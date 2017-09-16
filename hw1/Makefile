@@ -1,6 +1,6 @@
+SHELL := /bin/bash
 HWNUM = 1
 NEXERCISE = 4
-
 ifeq (,$(MAKECMDGOALS))
   EX :=
 else
@@ -37,7 +37,6 @@ else
 	@echo "Exercise $(EX) not found."
   endif
 endif
-	@make clean
 
 clean:
 	@rm -f *.cmo *.cmi *.out *.o *.cmx
