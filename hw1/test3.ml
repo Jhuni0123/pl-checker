@@ -2,6 +2,8 @@
 open Ex3
 open Testlib
 
+let exnum = 3
+
 type testcase =
     | INT of int * (int -> int) * int * int
     | STRING of int * (string -> string) * string * string
@@ -23,6 +25,6 @@ let testcases: testcase list =
     ; BOOL (123, (fun x -> not x), true, false)
     ]
 
-let _ = print_endline "# Test Exercise 3"
-let result = List.map runner testcases
-let _ = print_result result
+let _ =
+    ( if Array.length Sys.argv = 1 then test_exercise else summary_exercise )
+    testcases runner exnum

@@ -2,6 +2,8 @@
 open Ex2
 open Testlib
 
+let exnum = 2
+
 type testcase =
     | SIGMA of int * int * (int -> int) * int
 
@@ -19,6 +21,6 @@ let testcases: testcase list =
     ; SIGMA (-10000, 0, (fun x -> abs x), 50005000)
     ]
 
-let _ = print_endline "# Test Exercise 2"
-let result = List.map runner testcases
-let _ = print_result result
+let _ =
+    ( if Array.length Sys.argv = 1 then test_exercise else summary_exercise )
+    testcases runner exnum

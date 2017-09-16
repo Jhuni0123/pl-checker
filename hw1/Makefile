@@ -18,6 +18,7 @@ SRCS=$(shell srcs=""; num=1 ; while [[ $$num -le $(NEXERCISE) ]] ; do \
 	srcs=$$srcs\ ex$$num.ml\ test$$num.ml;((num = num + 1)); \
 	done; \
 	echo $$srcs)
+
 .PHONY: test clean
 
 all: test
@@ -25,8 +26,8 @@ all: test
 test:
 ifeq (, $(EX))
 	@echo "# Compiling Every Exercises"
-	@ocamlc -o tester.out testlib.ml $(SRCS) tester.ml
-	@./tester.out
+	@ocamlc -o hw$(HWNUM).out testlib.ml $(SRCS)
+	@./hw$(HWNUM).out total
 else
   ifeq (1, $(CORRECT_EX))
 	@echo "# Compiling Exercise $(EX)"

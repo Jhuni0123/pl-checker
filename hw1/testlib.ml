@@ -1,8 +1,10 @@
+open Printf
+
 let correctSymbol =
-    "\x1b[32m✓\x1b[37m"
+    "\x1b[32m✓\x1b[0m"
 
 let wrongSymbol =
-    "\x1b[31m✗\x1b[37m"
+    "\x1b[31m✗\x1b[0m"
 
 let string_of_case (n: int) =
     "Case " ^ (string_of_int n)
@@ -17,25 +19,28 @@ let res_string (cor: bool) (n: int) =
 let rate_of_result res =
     (List.length (List.filter (fun x -> x) res), List.length res)
 
-let print_result res =
-    let rec print_result_ res pass total =
-        match res with
-        | [] -> print_endline ("Passed " ^ (string_of_frac (pass, total)))
-        | h::res' ->
-                let _ = print_endline (res_string h (total+1))
-                in if h then print_result_ res' (pass+1) (total+1)
-                else print_result_ res' pass (total+1)
-    in print_result_ res 0 0
+let print_correct num =
+    printf "- Test %d Correct! %s\n" num correctSymbol
 
-let print_summary rs num =
-    let rec print_summary_ rs num =
-        match rs with
+let print_wrong num =
+    printf "- Test %d Wrong.. %s\n" num wrongSymbol
+
+let test_testcase tc runner num =
+    if runner tc then print_correct num
+    else print_wrong num
+
+let test_exercise tcs runner exnum =
+    let _ = printf "# Test Exercise %d\n" exnum in
+    let rec test_exercise_ tcs runner tcnum =
+        match tcs with
         | [] -> ()
-        | h::t ->
-                match rate_of_result h with
-                | (a, b) ->
-                        let _ =
-                            if a = b then print_endline correctSymbol
-                            else print_string wrongSymbol
-                        in print_summary_ t (num+1)
-    in print_summary_ rs 1
+        | tc::tcs' ->
+                let _ = test_testcase tc runner tcnum
+                in test_exercise_ tcs' runner (tcnum+1)
+    in test_exercise_ tcs runner 0
+
+let summary_exercise tcs runner exnum =
+    let _ = printf "# Test Exercise %d\n" exnum in
+    let total = List.length tcs in
+    let passed = List.length (List.filter runner tcs) in
+    printf "- Passed %d/%d Cases %s\n" passed total (if passed = total then correctSymbol else wrongSymbol)
