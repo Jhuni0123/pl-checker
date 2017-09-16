@@ -61,3 +61,8 @@ module type TestEx =
     val runner: testcase -> bool
   end
 
+let char_list_of_string str =
+  let rec char_list_of_string_ str idx lim l =
+    if idx < lim then char_list_of_string_ str (idx+1) lim (str.[idx]::l)
+    else l
+  in char_list_of_string_ str 0 (String.length str) []
