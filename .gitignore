@@ -2,4 +2,6 @@ ex*.ml
 *.out
 *.cmi
 *.cmo
+*.cmx
+*.o
 *.pdf

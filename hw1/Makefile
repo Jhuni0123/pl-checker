@@ -26,12 +26,12 @@ all: test
 test:
 ifeq (, $(EX))
 	@echo "# Compiling Every Exercises"
-	@ocamlc -o hw$(HWNUM).out testlib.ml $(SRCS)
+	@ocamlc -I ../lib/ -o hw$(HWNUM).out ../lib/testlib.ml $(SRCS)
 	@./hw$(HWNUM).out total
 else
   ifeq (1, $(CORRECT_EX))
 	@echo "# Compiling Exercise $(EX)"
-	@ocamlc -o ex$(EX).out testlib.ml ex$(EX).ml test$(EX).ml
+	@ocamlc -I ../lib/ -o ex$(EX).out ../lib/testlib.ml ex$(EX).ml test$(EX).ml
 	@./ex$(EX).out
   else
 	@echo "Exercise $(EX) not found."
@@ -40,4 +40,4 @@ endif
 	@make clean
 
 clean:
-	@rm -f *.cmo *.cmi *.out
+	@rm -f *.cmo *.cmi *.out *.o *.cmx
