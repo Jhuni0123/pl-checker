@@ -2,7 +2,7 @@
 open Ex1
 open Testlib
 
-module TestEx1 =
+module TestEx1: TestEx =
   struct
     let exnum = 1
 

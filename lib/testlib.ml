@@ -51,7 +51,7 @@ let wrapper =
   else
     summary_exercise
 
-module type ExTest =
+module type TestEx =
   sig
     type testcase
 

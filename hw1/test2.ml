@@ -2,7 +2,7 @@
 open Ex2
 open Testlib
 
-module ExTest2 =
+module TestEx2: TestEx =
   struct
     let exnum = 2
 
@@ -24,5 +24,5 @@ module ExTest2 =
       ]
   end
 
-open ExTest2
+open TestEx2
 let _ = wrapper testcases runner exnum

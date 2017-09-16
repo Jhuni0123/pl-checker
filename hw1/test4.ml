@@ -2,14 +2,14 @@
 open Ex4
 open Testlib
 
-module ExTest4 =
+let rec nat_of_int (n: int): nat =
+  match n with
+  | 0 -> ZERO
+  | n' -> SUCC (nat_of_int (n'-1))
+
+module TestEx4: TestEx =
   struct
     let exnum = 4
-
-    let rec nat_of_int (n: int): nat =
-      match n with
-      | 0 -> ZERO
-      | n' -> SUCC (nat_of_int (n'-1))
 
     type testcase =
       | ADD of int * int * int
@@ -35,5 +35,5 @@ module ExTest4 =
       ]
   end
 
-open ExTest4
+open TestEx4
 let _ = wrapper testcases runner exnum
