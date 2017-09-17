@@ -4,6 +4,8 @@ open Testlib
 
 open IntListQ
 
+module ValidIntListQ = (IntListQ: Queue)
+
 module TestEx6: TestEx =
   struct
     let exnum = 6
