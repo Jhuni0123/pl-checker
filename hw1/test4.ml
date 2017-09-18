@@ -7,6 +7,11 @@ let rec nat_of_int (n: int): nat =
   | 0 -> ZERO
   | n' -> SUCC (nat_of_int (n'-1))
 
+let rec int_of_nat (n: nat): int =
+  match n with
+  | ZERO -> 0
+  | SUCC n' -> (int_of_nat n') + 1
+
 module TestEx4: TestEx =
   struct
     let exnum = 4
@@ -17,8 +22,17 @@ module TestEx4: TestEx =
 
     let runner (tc: testcase): bool =
       match tc with
-      | ADD (i1, i2, o) -> natadd ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
-      | MUL (i1, i2, o) -> natmul ((nat_of_int i1), (nat_of_int i2)) = (nat_of_int o)
+      | ADD (n1, n2, ans) -> natadd ((nat_of_int n1), (nat_of_int n2)) = (nat_of_int ans)
+      | MUL (n1, n2, ans) -> natmul ((nat_of_int n1), (nat_of_int n2)) = (nat_of_int ans)
+
+    let string_of_tc (tc: testcase): string * string * string =
+      match tc with
+      | ADD (n1, n2, ans) ->
+          let output = int_of_nat (natadd ((nat_of_int n1), (nat_of_int n2))) in
+          (Printf.sprintf "natadd(%d, %d)" n1 n2, string_of_int output, string_of_int ans)
+      | MUL (n1, n2, ans) ->
+          let output = int_of_nat (natmul ((nat_of_int n1), (nat_of_int n2))) in
+          (Printf.sprintf "natmul(%d, %d)" n1 n2, string_of_int output, string_of_int ans)
 
     let testcases: testcase list =
       [ ADD (0,0,0)
@@ -36,4 +50,4 @@ module TestEx4: TestEx =
   end
 
 open TestEx4
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
