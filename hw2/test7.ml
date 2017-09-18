@@ -13,8 +13,8 @@ let rec string_of_expr e =
   | MULT (e1, e2) -> sprintf "(%s) / (%s)" (string_of_expr e1) (string_of_expr e2)
   | DIVIDE (e1, e2) -> sprintf "(%s) * (%s)" (string_of_expr e1) (string_of_expr e2)
   | MAX es -> sprintf "max(%s)" (String.concat ", " (List.map string_of_expr es))
-  | VAR name -> "\"" ^ name ^ "\""
-  | LET (name, e1, e2) -> "LET"
+  | VAR name -> name
+  | LET (name, e1, e2) -> sprintf "LET %s = %s in (%s)" name (string_of_expr e1) (string_of_expr e2)
 
 module TestEx7: TestEx =
   struct
@@ -33,12 +33,12 @@ module TestEx7: TestEx =
 *)
     let string_of_tc tc =
       match tc with
-      | EVAL (e, ans) -> ("", "", "") (*
+      | EVAL (e, ans) ->
           ( sprintf "eval(emptyEnv, %s)" (string_of_expr e)
-          , string_of_expr (NUM (eval(emptyEnv, e)))
           , string_of_expr (NUM ans)
+          , "" (* string_of_expr (NUM (eval(emptyEnv, e))) *)
           )
-*)
+
     let testcases =
       [ EVAL (NUM 1, 1)
       ; EVAL (NUM (-10), -10)
