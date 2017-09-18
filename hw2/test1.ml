@@ -1,6 +1,23 @@
 (* Exercise 1. eval formula *)
 open Ex1
 open Testlib
+open Printf
+
+let rec string_of_expr e =
+  match e with
+  | NUM n -> string_of_int n
+  | PLUS (e1, e2) -> sprintf "(%s) + (%s)" (string_of_expr e1) (string_of_expr e2)
+  | MINUS (e1, e2) -> sprintf "(%s) - (%s)" (string_of_expr e1) (string_of_expr e2)
+
+let rec string_of_fomula f =
+  match f with
+  | TRUE -> "true"
+  | FALSE -> "false"
+  | NOT f' -> sprintf "not (%s)" (string_of_fomula f')
+  | ANDALSO (f1, f2) -> sprintf "(%s) && (%s)" (string_of_fomula f1) (string_of_fomula f2)
+  | ORELSE (f1, f2) -> sprintf "(%s) || (%s)" (string_of_fomula f1) (string_of_fomula f2)
+  | IMPLY (f1, f2) -> sprintf "(%s) -> (%s)" (string_of_fomula f1) (string_of_fomula f2)
+  | LESS (e1, e2) -> sprintf "%s < %s" (string_of_expr e1) (string_of_expr e2)
 
 module TestEx1: TestEx =
   struct
@@ -11,7 +28,11 @@ module TestEx1: TestEx =
 
     let runner tc =
       match tc with
-      | EVAL (f, b) -> eval f = b
+      | EVAL (f, ans) -> eval f = ans
+
+    let string_of_tc tc =
+      match tc with
+      | EVAL (f, ans) -> (string_of_fomula f, string_of_bool (eval f), string_of_bool ans)
 
     let testcases =
       [ EVAL (TRUE, true)
@@ -48,4 +69,4 @@ module TestEx1: TestEx =
   end
 
 open TestEx1
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
