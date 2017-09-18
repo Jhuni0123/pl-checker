@@ -22,10 +22,10 @@ module TestEx6: TestEx =
         | SEQ [] -> true
         | SEQ (h::tc') ->
             match h with
-            | ENQ l -> runner_ (SEQ tc') (enQ (q, elem l))
+            | ENQ l -> runner_ (SEQ tc') (enQ (q, l))
             | DEQ l ->
                 let (l', q') = deQ q in
-                if l' = elem l then runner_ (SEQ tc') q'
+                if l' = l then runner_ (SEQ tc') q'
                 else false
       in runner_ tc emptyQ
 
