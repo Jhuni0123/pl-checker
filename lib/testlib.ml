@@ -10,7 +10,7 @@ let test_testcase num tc runner string_of_tc =
   if runner tc then printf "%s Test %d\n" correct_symbol num
   else
     let (tc_s, ans_s, output_s) = string_of_tc tc in
-    printf "%s Test %d: %s\n  Wrong... answer: %s, output: %s\n" wrong_symbol num tc_s ans_s output_s
+    printf "%s Test %d: %s\n  answer: %s, output: %s\n" wrong_symbol num tc_s ans_s output_s
 
 let test_exercise exnum tcs runner string_of_tc =
   let _ = printf "# Test Exercise %d\n" exnum in
@@ -26,7 +26,7 @@ let summary_exercise exnum tcs runner =
   let _ = printf "# Test Exercise %d\n" exnum in
   let total = List.length tcs in
   let passed = List.length (List.filter runner tcs) in
-  printf "- Passed %d/%d Cases %s\n" passed total (if passed = total then correct_symbol else wrong_symbol)
+  printf "%s Passed %d/%d Cases\n" (if passed = total then correct_symbol else wrong_symbol) passed total
 
 let wrapper a1 a2 a3 a4 =
   if Array.length Sys.argv = 1 then
