@@ -17,17 +17,40 @@ module TestEx6: TestEx =
       | DEQ of int list
 
     let runner tc =
-      let rec runner_ tc q =
-        match tc with
-        | SEQ [] -> true
-        | SEQ (h::tc') ->
+      let rec runner_ l q =
+        match l with
+        | [] -> true
+        | (h::tc') ->
             match h with
-            | ENQ l -> runner_ (SEQ tc') (enQ (q, l))
+            | ENQ l -> runner_ tc' (enQ (q, l))
             | DEQ l ->
                 let (l', q') = deQ q in
-                if l' = l then runner_ (SEQ tc') q'
+                if l' = l then runner_ tc' q'
                 else false
-      in runner_ tc emptyQ
+      in
+      match tc with
+      | SEQ l -> runner_ l emptyQ
+
+    let string_of_tc tc =
+      let rec string_of_seqs seqs q =
+        match seqs with
+        | [] -> ("", "", "")
+        | (h::seqs') ->
+            let string_of_int_list = string_of_list string_of_int in
+            match h with
+            | ENQ l ->
+                let (s, ans, out) = string_of_seqs seqs' (enQ (q, l)) in
+                ("\n  enQ (q, " ^ (string_of_int_list l) ^ ")" ^ s, ans, out)
+            | DEQ l ->
+                let (l', q') = deQ q in
+                if l' = l then
+                  let (s, ans, out) = string_of_seqs seqs' q' in
+                  ("\n  " ^ correct_symbol ^ " deQ (q) = " ^ (string_of_int_list l) ^ s, ans, out)
+                else ("\n  " ^ wrong_symbol ^ " deQ (q)", string_of_int_list l, string_of_int_list l')
+
+      in
+      match tc with
+      | SEQ seqs -> string_of_seqs seqs emptyQ
 
     let testcases =
       [ SEQ
@@ -54,4 +77,4 @@ module TestEx6: TestEx =
   end
 
 open TestEx6
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
