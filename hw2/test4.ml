@@ -31,6 +31,8 @@ module TestEx4: TestEx =
       ; CHECK (AREA ("a", STATION "b"), false)
       ; CHECK (AREA ("a", CONNECT (STATION "a", AREA ("b", STATION "c"))), false)
       ; CHECK (AREA ("a", AREA ("b", CONNECT (STATION "a", STATION "c"))), false)
+      ; CHECK (AREA ("one", CONNECT (CONNECT (STATION "one", CONNECT (STATION "one", STATION "one")), STATION "one")), true)
+      ; CHECK (AREA ("a", AREA ("b", STATION "a")), true)
       ; CHECK (STATION "a", false)
       ; CHECK (STATION "b", false)
       ; CHECK (AREA ("b", STATION "b"), true)
@@ -41,6 +43,8 @@ module TestEx4: TestEx =
       ; CHECK (CONNECT (AREA ("seoul", STATION "seoul"), AREA ("busan", STATION "seoul")), false)
       ; CHECK (CONNECT (AREA ("seoul", STATION "busan"), AREA ("busan", STATION "busan")), false)
       ; CHECK (CONNECT (AREA ("seoul", STATION "busan"), AREA ("busan", STATION "seoul")), false)
+      ; CHECK (CONNECT (AREA ("a", STATION "a"), AREA ("b", AREA ("a", CONNECT (STATION "b", STATION "a")))), true)
+      ; CHECK (CONNECT (AREA ("c", STATION "c"), AREA ("b", AREA ("a", CONNECT (STATION "b", STATION "c")))), false)
       ]
   end
 
