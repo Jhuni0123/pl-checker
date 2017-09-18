@@ -11,7 +11,17 @@ module TestEx1: TestEx =
 
     let runner (tc: testcase): bool =
       match tc with
-      | MERGE (l1, l2, o) -> merge(l1, l2) = o
+      | MERGE (l1, l2, ans) -> merge(l1, l2) = ans
+
+    let string_of_tc (tc: testcase): string * string * string =
+      match tc with
+      | MERGE (l1, l2, ans) ->
+          let string_of_int_list = string_of_list string_of_int in
+          let output = merge(l1, l2) in
+          ( Printf.sprintf "merge(%s, %s)" (string_of_int_list l1) (string_of_int_list l2)
+          , string_of_int_list ans
+          , string_of_int_list output
+          )
 
     let testcases: testcase list =
       [ MERGE ([3;2;1], [6;5;4], [6;5;4;3;2;1])
@@ -26,4 +36,4 @@ module TestEx1: TestEx =
   end
 
 open TestEx1
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
