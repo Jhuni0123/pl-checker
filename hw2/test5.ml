@@ -1,6 +1,23 @@
 (* Exercise 5. zipper *)
 open Ex5
 open Testlib
+open Printf
+
+let rec string_of_tree t =
+  match t with
+  | LEAF name -> name
+  | NODE ts -> "NODE " ^ (string_of_list string_of_tree ts)
+
+let rec string_of_zipper zip =
+  match zip with
+  | TOP -> "TOP"
+  | HAND (left, up, right) ->
+      let string_of_tree_list = string_of_list string_of_tree in
+      sprintf "HAND(%s, %s, %s)" (string_of_tree_list left) (string_of_zipper up) (string_of_tree_list right)
+
+let string_of_location loc =
+  match loc with
+  | LOC (t, zip) -> sprintf "LOC (%s, %s)" (string_of_tree t) (string_of_zipper zip)
 
 module TestEx5: TestEx =
   struct
@@ -14,10 +31,17 @@ module TestEx5: TestEx =
 
     let runner tc =
       match tc with
-      | LEFT (loc1, loc2) -> goLeft loc1 = loc2
-      | RIGHT (loc1, loc2) -> goRight loc1 = loc2
-      | UP (loc1, loc2) -> goUp loc1 = loc2
-      | DOWN (loc1, loc2) -> goDown loc1 = loc2
+      | LEFT (loc, ans) -> goLeft loc = ans
+      | RIGHT (loc, ans) -> goRight loc = ans
+      | UP (loc, ans) -> goUp loc = ans
+      | DOWN (loc, ans) -> goDown loc = ans
+
+    let string_of_tc tc =
+      match tc with
+      | LEFT (loc, ans) -> (sprintf "goLeft (%s)" (string_of_location loc), string_of_location ans, string_of_location (goLeft loc))
+      | RIGHT (loc, ans) -> (sprintf "goRight (%s)" (string_of_location loc), string_of_location ans, string_of_location (goRight loc))
+      | UP (loc, ans) -> (sprintf "goUp (%s)" (string_of_location loc), string_of_location ans, string_of_location (goUp loc))
+      | DOWN (loc, ans) -> (sprintf "goDown (%s)" (string_of_location loc), string_of_location ans, string_of_location (goDown loc))
 
     let testcases =
       [ LEFT (
@@ -168,4 +192,4 @@ module TestEx5: TestEx =
   end
 
 open TestEx5
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
