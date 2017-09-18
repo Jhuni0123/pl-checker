@@ -1,8 +1,20 @@
 (* Exercise 7. Zexpr *)
 open Ex7
 open Testlib
+open Printf
 
 open Zexpr
+
+let rec string_of_expr e =
+  match e with
+  | NUM n -> string_of_int n
+  | PLUS (e1, e2) -> sprintf "(%s) + (%s)" (string_of_expr e1) (string_of_expr e2)
+  | MINUS (e1, e2) -> sprintf "(%s) - (%s)" (string_of_expr e1) (string_of_expr e2)
+  | MULT (e1, e2) -> sprintf "(%s) / (%s)" (string_of_expr e1) (string_of_expr e2)
+  | DIVIDE (e1, e2) -> sprintf "(%s) * (%s)" (string_of_expr e1) (string_of_expr e2)
+  | MAX es -> sprintf "max(%s)" (String.concat ", " (List.map string_of_expr es))
+  | VAR name -> "\"" ^ name ^ "\""
+  | LET (name, e1, e2) -> "LET"
 
 module TestEx7: TestEx =
   struct
@@ -13,11 +25,19 @@ module TestEx7: TestEx =
 
     let runner tc =
       match tc with
-      | EVAL (e, v) -> eval(emptyEnv, e) = eval(emptyEnv, NUM v)
+      | EVAL (e, ans) -> eval(emptyEnv, e) = eval(emptyEnv, NUM ans)
           (*
           let _ = print_endline "- two line below should be same" in
           let _ = print_string "output: "; print_value (eval(emptyEnv, e)); print_endline "" in
           let _ = print_string "answer: "; print_int v; print_endline "" in true
+*)
+    let string_of_tc tc =
+      match tc with
+      | EVAL (e, ans) -> ("", "", "") (*
+          ( sprintf "eval(emptyEnv, %s)" (string_of_expr e)
+          , string_of_expr (NUM (eval(emptyEnv, e)))
+          , string_of_expr (NUM ans)
+          )
 *)
     let testcases =
       [ EVAL (NUM 1, 1)
@@ -35,4 +55,4 @@ module TestEx7: TestEx =
   end
 
 open TestEx7
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
