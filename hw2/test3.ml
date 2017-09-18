@@ -13,7 +13,7 @@ let crazy2_of_string str =
         else failwith "only '+-0' are allowed"
   in crazy2_of_char_list (List.rev (char_list_of_string str))
 
-let obf c =
+let magic c =
   let d i=i*2 in let p i=d(
   i)+1 in let m i=d(i)-1 in
   let rec t c= match c with
@@ -30,7 +30,15 @@ module TestEx3: TestEx =
 
     let runner tc =
       match tc with
-      | ADD (c1, c2, o) -> obf (crazy2add ((crazy2_of_string c1), (crazy2_of_string c2))) = o
+      | ADD (c1, c2, ans) -> magic (crazy2add ((crazy2_of_string c1), (crazy2_of_string c2))) = ans
+
+    let string_of_tc tc =
+      match tc with
+      | ADD (c1, c2, ans) ->
+          ( Printf.sprintf "crazy2add(%s, %s)" c1 c2
+          , string_of_int (magic (crazy2add ((crazy2_of_string c1), (crazy2_of_string c2))))
+          , string_of_int ans
+          )
 
     let testcases =
       [ ADD ("0", "0", 0)
@@ -43,4 +51,4 @@ module TestEx3: TestEx =
   end
 
 open TestEx3
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
