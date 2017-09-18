@@ -2,6 +2,12 @@
 open Ex4
 open Testlib
 
+let rec string_of_metro m =
+  match m with
+  | STATION name -> Printf.sprintf "Station \"%s\"" name
+  | AREA (name, m') -> Printf.sprintf "Area \"%s\" (%s)" name (string_of_metro m')
+  | CONNECT (m1, m2) -> Printf.sprintf "Connect (%s), (%s)" (string_of_metro m1) (string_of_metro m2)
+
 module TestEx4: TestEx =
   struct
     let exnum = 4
@@ -11,7 +17,11 @@ module TestEx4: TestEx =
 
     let runner tc =
       match tc with
-      | CHECK (m, b) -> checkMetro m = b
+      | CHECK (m, ans) -> checkMetro m = ans
+
+    let string_of_tc tc =
+      match tc with
+      | CHECK (m, ans) -> (Printf.sprintf "checkMetro (%s)" (string_of_metro m), string_of_bool (checkMetro m), string_of_bool ans)
 
     let testcases =
       [ CHECK (AREA ("a", STATION "a"), true)
@@ -35,4 +45,4 @@ module TestEx4: TestEx =
   end
 
 open TestEx4
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc

@@ -22,7 +22,11 @@ module TestEx2: TestEx =
 
     let runner tc =
       match tc with
-      | CRAZY2 (str, o) -> crazy2val (crazy2_of_string str) = o
+      | CRAZY2 (str, ans) -> crazy2val (crazy2_of_string str) = ans
+
+    let string_of_tc tc =
+      match tc with
+      | CRAZY2 (str, ans) -> ("crazy2val " ^ str, string_of_int ans, string_of_int (crazy2val (crazy2_of_string str)))
 
     let testcases =
       [ CRAZY2 ("0", 0)
@@ -56,4 +60,4 @@ module TestEx2: TestEx =
   end
 
 open TestEx2
-let _ = wrapper testcases runner exnum
+let _ = wrapper exnum testcases runner string_of_tc
