@@ -11,7 +11,7 @@ else
 endif
 
 ifneq (,$(EX))
-  CORRECT_EX := $(shell echo "$(EX)>=1 && $(EX)<=$(NEXERCISE)" | bc)
+  CORRECT_EX := $(shell echo "$$(($(EX)>=1 && $(EX)<=$(NEXERCISE)))")
 endif
 
 SRCS=$(shell srcs=""; num=1 ; while [[ $$num -le $(NEXERCISE) ]] ; do \
