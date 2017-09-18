@@ -15,6 +15,7 @@ module TestEx6: TestEx =
     and seq =
       | ENQ of int list
       | DEQ of int list
+      | DEQ_EMPTYQ
 
     let runner tc =
       let rec runner_ l q =
@@ -27,6 +28,11 @@ module TestEx6: TestEx =
                 let (l', q') = deQ q in
                 if l' = l then runner_ tc' q'
                 else false
+            | DEQ_EMPTYQ ->
+                let res =
+                  try Some (deQ q)
+                  with EMPTY_Q -> None
+                in res = None
       in
       match tc with
       | SEQ l -> runner_ l emptyQ
@@ -47,6 +53,15 @@ module TestEx6: TestEx =
                   let (s, ans, out) = string_of_seqs seqs' q' in
                   ("\n  " ^ correct_symbol ^ " deQ (q) = " ^ (string_of_int_list l) ^ s, ans, out)
                 else ("\n  " ^ wrong_symbol ^ " deQ (q)", string_of_int_list l, string_of_int_list l')
+            | DEQ_EMPTYQ ->
+                let res =
+                  try Some (deQ q)
+                  with EMPTY_Q -> None
+                in match res with
+                | Some (l', q') -> ("\n  " ^ wrong_symbol ^ " deQ (q)", "Exception EMPTY_Q", string_of_int_list l')
+                | None ->
+                    let (s, ans, out) = string_of_seqs seqs' q
+                    in ("\n  " ^ correct_symbol ^ " deQ (q) = Exception EMPTY_Q" ^ s, ans, out)
 
       in
       match tc with
@@ -56,6 +71,29 @@ module TestEx6: TestEx =
       [ SEQ
         [ ENQ [1;2;3]
         ; DEQ [1;2;3]
+        ]
+      ; SEQ
+        [ DEQ_EMPTYQ ]
+      ; SEQ
+        [ ENQ [1]
+        ; DEQ [1]
+        ; DEQ_EMPTYQ
+        ]
+      ; SEQ
+        [ ENQ [3;2;1]
+        ; ENQ [4;5;6]
+        ; DEQ [3;2;1]
+        ; ENQ [9;8;7;6]
+        ; DEQ [4;5;6]
+        ; DEQ [9;8;7;6]
+        ; DEQ_EMPTYQ
+        ]
+      ; SEQ
+        [ ENQ [3;2;1]
+        ; ENQ [-1;-2;-3]
+        ; DEQ [3;2;1]
+        ; DEQ [-1;-2;-3]
+        ; DEQ_EMPTYQ
         ]
       ; SEQ
         [ ENQ []
@@ -72,6 +110,41 @@ module TestEx6: TestEx =
         ; DEQ [-10;1;-9]
         ; ENQ [222;333]
         ; DEQ [222;333]
+        ; DEQ_EMPTYQ
+        ]
+      ; SEQ
+        [ ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; DEQ_EMPTYQ
+        ]
+      ; SEQ
+        [ ENQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; ENQ [1;2;3;4;5]
+        ; DEQ [1;2;3;4;5]
+        ; DEQ_EMPTYQ
         ]
       ]
   end
