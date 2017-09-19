@@ -30,19 +30,34 @@ module TestEx5: TestEx =
       | GORIGHT of location
       | GOUP of location
       | GODOWN of location
+      | NOMOVE_LEFT
+      | NOMOVE_RIGHT
+      | NOMOVE_UP
+      | NOMOVE_DOWN
 
     let runner tc =
       let rec runner_ seqs curr =
         match seqs with
         | [] -> true
         | h::seqs' ->
-            let (output, ans) =
+            let (go, ans) =
               match h with
-              | GOLEFT ans -> (goLeft curr, ans)
-              | GORIGHT ans -> (goRight curr, ans)
-              | GOUP ans -> (goUp curr, ans)
-              | GODOWN ans -> (goDown curr, ans)
-            in if output = ans then runner_ seqs' ans
+              | GOLEFT ans -> (goLeft, Some ans)
+              | GORIGHT ans -> (goRight, Some ans)
+              | GOUP ans -> (goUp, Some ans)
+              | GODOWN ans -> (goDown, Some ans)
+              | NOMOVE_LEFT -> (goLeft, None)
+              | NOMOVE_RIGHT -> (goRight, None)
+              | NOMOVE_UP -> (goUp, None)
+              | NOMOVE_DOWN -> (goDown, None)
+            in
+              let output =
+                try Some (go curr)
+                with NOMOVE msg -> None
+            in if output = ans then
+              match ans with
+              | Some loc -> runner_ seqs' loc
+              | None -> runner_ seqs' curr
             else false
       in
         match tc with
@@ -60,6 +75,7 @@ module TestEx5: TestEx =
       ( NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]],
         [ GODOWN (LOC (NODE [LEAF "a"; LEAF "*"; LEAF "b"], HAND ([], TOP, [LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
         ; GORIGHT (LOC (LEAF "+", HAND ([NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, [NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
+        ; NOMOVE_DOWN
         ]
       )
       ]
