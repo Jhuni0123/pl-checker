@@ -24,169 +24,43 @@ module TestEx5: TestEx =
     let exnum = 5
 
     type testcase =
-      | LEFT of location * location
-      | RIGHT of location * location
-      | UP of location * location
-      | DOWN of location * location
+      | TREE of tree * seq list
+    and seq =
+      | GOLEFT of location
+      | GORIGHT of location
+      | GOUP of location
+      | GODOWN of location
 
     let runner tc =
-      match tc with
-      | LEFT (loc, ans) -> goLeft loc = ans
-      | RIGHT (loc, ans) -> goRight loc = ans
-      | UP (loc, ans) -> goUp loc = ans
-      | DOWN (loc, ans) -> goDown loc = ans
+      let rec runner_ seqs curr =
+        match seqs with
+        | [] -> true
+        | h::seqs' ->
+            let (output, ans) =
+              match h with
+              | GOLEFT ans -> (goLeft curr, ans)
+              | GORIGHT ans -> (goRight curr, ans)
+              | GOUP ans -> (goUp curr, ans)
+              | GODOWN ans -> (goDown curr, ans)
+            in if output = ans then runner_ seqs' ans
+            else false
+      in
+        match tc with
+        | TREE (t, seqs) -> runner_ seqs (LOC (t, TOP))
 
-    let string_of_tc tc =
-      match tc with
+    let string_of_tc (tc: testcase) = ("", "", "")
+      (* match tc with
       | LEFT (loc, ans) -> (sprintf "goLeft (%s)" (string_of_location loc), string_of_location ans, string_of_location (goLeft loc))
       | RIGHT (loc, ans) -> (sprintf "goRight (%s)" (string_of_location loc), string_of_location ans, string_of_location (goRight loc))
       | UP (loc, ans) -> (sprintf "goUp (%s)" (string_of_location loc), string_of_location ans, string_of_location (goUp loc))
       | DOWN (loc, ans) -> (sprintf "goDown (%s)" (string_of_location loc), string_of_location ans, string_of_location (goDown loc))
-
+*)
     let testcases =
-      [ LEFT (
-        LOC (
-          LEAF "*",
-          HAND (
-            [LEAF "c"],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []),
-            [LEAF "d"]
-          )
-        ),
-        LOC (
-          LEAF "c",
-          HAND (
-            [],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []),
-            [LEAF "*"; LEAF "d"]
-          )
-        )
-      )
-      ; RIGHT (
-        LOC (
-          LEAF "*",
-          HAND (
-            [LEAF "c"],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []),
-            [LEAF "d"]
-          )
-        ),
-        LOC (
-          LEAF "d",
-          HAND (
-            [LEAF "*"; LEAF "c";],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []),
-            []
-          )
-        )
-      )
-      ; UP (
-        LOC (
-          LEAF "*",
-          HAND (
-            [LEAF "c"],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []),
-            [LEAF "d"]
-          )
-        ),
-        LOC (
-          NODE [LEAF "c"; LEAF "*"; LEAF "d"],
-          HAND (
-            [LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            TOP,
-            []
-          )
-        )
-      )
-      ; DOWN (
-        LOC (
-          NODE [LEAF "c"; LEAF "*"; LEAF "d"],
-          HAND (
-            [LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            TOP,
-            []
-          )
-        ),
-        LOC (
-          LEAF "c",
-          HAND (
-            [],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []),
-            [LEAF "*"; LEAF "d"]
-          )
-        )
-      )
-      ; LEFT (
-        LOC (
-          NODE [LEAF "c"; LEAF "*"; LEAF "d"],
-          HAND (
-            [LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]),
-            [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]]
-          )
-        ),
-        LOC (
-          LEAF "+",
-          HAND (
-            [NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]),
-            [NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]]
-          )
-        )
-      )
-      ; RIGHT (
-        LOC (
-          NODE [LEAF "c"; LEAF "*"; LEAF "d"],
-          HAND (
-            [LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]),
-            [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]]
-          )
-        ),
-        LOC (
-          LEAF "-",
-          HAND (
-            [NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]),
-            [NODE [LEAF "e"; LEAF "/"; LEAF "f"]]
-          )
-        )
-      )
-      ; UP (
-        LOC (
-          NODE [LEAF "c"; LEAF "*"; LEAF "d"],
-          HAND (
-            [LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]),
-            [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]]
-          )
-        ),
-        LOC (
-          NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]],
-          HAND (
-            [],
-            TOP,
-            [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]
-          )
-        )
-      )
-      ; DOWN (
-        LOC (
-          NODE [LEAF "c"; LEAF "*"; LEAF "d"],
-          HAND (
-            [LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]],
-            HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]),
-            [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]]
-          )
-        ),
-        LOC (
-          LEAF "c",
-          HAND (
-            [],
-            HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]]),
-            [LEAF "*"; LEAF "d"]
-          )
-        )
+      [ TREE
+      ( NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]],
+        [ GODOWN (LOC (NODE [LEAF "a"; LEAF "*"; LEAF "b"], HAND ([], TOP, [LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
+        ; GORIGHT (LOC (LEAF "+", HAND ([NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, [NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
+        ]
       )
       ]
   end
