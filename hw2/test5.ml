@@ -3,22 +3,6 @@ open Ex5
 open Testlib
 open Printf
 
-let rec string_of_tree t =
-  match t with
-  | LEAF name -> name
-  | NODE ts -> "NODE " ^ (string_of_list string_of_tree ts)
-
-let rec string_of_zipper zip =
-  match zip with
-  | TOP -> "TOP"
-  | HAND (left, up, right) ->
-      let string_of_tree_list = string_of_list string_of_tree in
-      sprintf "HAND(%s, %s, %s)" (string_of_tree_list left) (string_of_zipper up) (string_of_tree_list right)
-
-let string_of_location loc =
-  match loc with
-  | LOC (t, zip) -> sprintf "LOC (%s, %s)" (string_of_tree t) (string_of_zipper zip)
-
 module TestEx5: TestEx =
   struct
     let exnum = 5
@@ -63,18 +47,53 @@ module TestEx5: TestEx =
         match tc with
         | TREE (t, seqs) -> runner_ seqs (LOC (t, TOP))
 
-    let string_of_tc (tc: testcase) = ("", "", "")
-      (* match tc with
-      | LEFT (loc, ans) -> (sprintf "goLeft (%s)" (string_of_location loc), string_of_location ans, string_of_location (goLeft loc))
-      | RIGHT (loc, ans) -> (sprintf "goRight (%s)" (string_of_location loc), string_of_location ans, string_of_location (goRight loc))
-      | UP (loc, ans) -> (sprintf "goUp (%s)" (string_of_location loc), string_of_location ans, string_of_location (goUp loc))
-      | DOWN (loc, ans) -> (sprintf "goDown (%s)" (string_of_location loc), string_of_location ans, string_of_location (goDown loc))
-*)
+    let string_of_tc tc =
+      let rec string_of_tc_ seqs curr =
+        match seqs with
+        | [] -> ("", "", "")
+        | h::seqs' ->
+            let go, ans, str =
+              match h with
+              | GOLEFT ans -> (goLeft, Some ans, "goLeft")
+              | GORIGHT ans -> (goRight, Some ans, "goRight")
+              | GOUP ans -> (goUp, Some ans, "goUp")
+              | GODOWN ans -> (goDown, Some ans, "goDown")
+              | NOMOVE_LEFT -> (goLeft, None, "NOMOVE on left")
+              | NOMOVE_RIGHT -> (goRight, None, "NOMOVE on right")
+              | NOMOVE_UP -> (goUp, None, "NOMOVE on up")
+              | NOMOVE_DOWN -> (goDown, None, "NOMOVE on down")
+            in
+              let output =
+                try Some (go curr)
+                with NOMOVE msg -> None
+            in if output = ans then
+              let (s, ans_s, out_s) =
+                match ans with
+                | Some loc -> string_of_tc_ seqs' loc
+                | None -> string_of_tc_ seqs' curr
+              in ("\n  " ^ correct_symbol ^ " " ^ str ^ s, ans_s, out_s)
+            else ("\n  " ^ wrong_symbol ^ " " ^ str, "", "")
+
+      in
+        match tc with
+        | TREE (t, seqs) -> string_of_tc_ seqs (LOC (t, TOP))
+
     let testcases =
       [ TREE
       ( NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]],
-        [ GODOWN (LOC (NODE [LEAF "a"; LEAF "*"; LEAF "b"], HAND ([], TOP, [LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
+        [ NOMOVE_UP
+        ; NOMOVE_LEFT
+        ; NOMOVE_RIGHT
+        ; GODOWN (LOC (NODE [LEAF "a"; LEAF "*"; LEAF "b"], HAND ([], TOP, [LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
+        ; NOMOVE_LEFT
         ; GORIGHT (LOC (LEAF "+", HAND ([NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, [NODE [LEAF "c"; LEAF "*"; LEAF "d"]])))
+        ; NOMOVE_DOWN
+        ; GORIGHT (LOC (NODE [LEAF "c"; LEAF "*"; LEAF "d"], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, [])))
+        ; NOMOVE_RIGHT
+        ; GODOWN (LOC (LEAF "c", HAND ([], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []), [LEAF "*"; LEAF "d"])))
+        ; NOMOVE_LEFT
+        ; NOMOVE_DOWN
+        ; GORIGHT (LOC (LEAF "*", HAND ([LEAF "c"], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []), [LEAF "d"])))
         ; NOMOVE_DOWN
         ]
       )
