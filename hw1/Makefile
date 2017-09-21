@@ -1,42 +1,17 @@
-SHELL := /bin/bash
-HWNUM = 1
-NEXERCISE = 4
-ifeq (,$(MAKECMDGOALS))
-  EX :=
-else
-  ifeq (test, $(firstword $(MAKECMDGOALS)))
-  EX := $(word 2,$(MAKECMDGOALS))
-  $(eval $(EX):;@:)
-  endif
-endif
+SHELL=/bin/bash
 
-ifneq (,$(EX))
-  CORRECT_EX := $(shell echo "$$(($(EX)>=1 && $(EX)<=$(NEXERCISE)))")
+ifeq (test,$(firstword $(MAKECMDGOALS)))
+  ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(ARGS):;@:)
 endif
-
-SRCS=$(shell srcs=""; num=1 ; while [[ $$num -le $(NEXERCISE) ]] ; do \
-	srcs=$$srcs\ ex$$num.ml\ test$$num.ml;((num = num + 1)); \
-	done; \
-	echo $$srcs)
 
 .PHONY: test clean
 
-all: test
+all:
+	@./check.sh
 
 test:
-ifeq (, $(EX))
-	@echo "# Compiling Every Exercises"
-	@ocamlc -I ../lib/ -o hw$(HWNUM).out ../lib/testlib.ml $(SRCS)
-	@./hw$(HWNUM).out total
-else
-  ifeq (1, $(CORRECT_EX))
-	@echo "# Compiling Exercise $(EX)"
-	@ocamlc -I ../lib/ -o ex$(EX).out ../lib/testlib.ml ex$(EX).ml test$(EX).ml
-	@./ex$(EX).out
-  else
-	@echo "Exercise $(EX) not found."
-  endif
-endif
+	@./check.sh ${ARGS}
 
 clean:
 	@rm -f *.cmo *.cmi *.out *.o *.cmx
