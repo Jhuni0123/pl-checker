@@ -97,6 +97,15 @@ module TestEx5: TestEx =
         ; NOMOVE_DOWN
         ]
       )
+      ; TREE
+      ( NODE [NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]];LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]],
+        [ NOMOVE_UP
+        ; NOMOVE_LEFT
+        ; NOMOVE_RIGHT
+        ; GODOWN (LOC (NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]])))
+        ; NOMOVE_LEFT
+        ]
+      )
       ]
   end
 
