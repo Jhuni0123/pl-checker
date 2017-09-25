@@ -76,7 +76,9 @@ module TestEx5: TestEx =
 
       in
         match tc with
-        | TREE (t, seqs) -> string_of_tc_ seqs (LOC (t, TOP))
+        | TREE (t, seqs) ->
+            let (s, ans_s, out_s) = string_of_tc_ seqs (LOC (t, TOP))
+            in ("\n  start from top of tree" ^ s, ans_s, out_s)
 
     let testcases =
       [ TREE
