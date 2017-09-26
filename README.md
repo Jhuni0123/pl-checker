@@ -20,6 +20,5 @@ git pull origin master
 ```
 
 # Status
-- **2-5**: It does not print user output and answer
 - **2-7**: It does not print user output
 
