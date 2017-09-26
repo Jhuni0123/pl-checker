@@ -9,7 +9,7 @@ let rec height_of_tree t =
   | NODE [] -> 0
   | NODE l -> (List.fold_left max 0 (List.map height_of_tree l)) + 1
 
-let string_of_tree t =
+let string_of_tree t t' =
   let height = (height_of_tree t)*2+1 in
   let base = Array.make height "  " in
   let string_repeat s n =
@@ -25,19 +25,20 @@ let string_of_tree t =
       in sa_fill (line+1) n
     else ()
   in
-  let rec append_tree t line =
+  let rec append_tree t line t' =
+    let node_str = if t == t' then "★" else "○" in
     let len =
       match t with
       | LEAF name ->
-          let _ = sa_append_string line (sprintf "○[%s] " name) 1
+          let _ = sa_append_string line (node_str ^ (sprintf "[%s] " name)) 1
           in (String.length name) + 4
       | NODE l ->
-          let _ = sa_append_string line "○" 1 in
+          let _ = sa_append_string line node_str 1 in
           match l with
           | [] -> 1
           | h::ns ->
               let _ = sa_append_string (line+1) "│" 1 in
-              let child_len = append_tree h (line+2) in
+              let child_len = append_tree h (line+2) t' in
               let rec append_nodes ns line prev_len sum =
                 match ns with
                 | [] -> (prev_len, sum)
@@ -46,7 +47,7 @@ let string_of_tree t =
                     let _ = sa_append_string line "┬" 1 in
                     let _ = sa_append_string (line+1) " " (prev_len-1) in
                     let _ = sa_append_string (line+1) "│" 1 in
-                    let newlen = append_tree h (line+2) in
+                    let newlen = append_tree h (line+2) t' in
                     append_nodes ns' line newlen (sum + newlen)
               in
               let (last, sum) = append_nodes ns line child_len child_len in
@@ -58,8 +59,21 @@ let string_of_tree t =
     let _ = sa_fill (line + (height_of_tree t)*2+1) len in
     len
   in
-  let _ = append_tree t 0
+  let _ = append_tree t 0 t'
   in String.concat "\n" (Array.to_list base)
+
+let rec tree_of_zipper t zip =
+  match zip with
+  | TOP -> t
+  | HAND (left, up, right) -> tree_of_zipper (NODE ((List.rev left) @ [t] @ right)) up
+
+let tree_of_location loc =
+  match loc with
+  | LOC (t, zip) -> tree_of_zipper t zip
+
+let string_of_location loc =
+  match loc with
+  | LOC (t, zip) -> string_of_tree (tree_of_zipper t zip) t
 
 module TestEx5: TestEx =
   struct
@@ -130,13 +144,23 @@ module TestEx5: TestEx =
                 | Some loc -> string_of_tc_ seqs' loc
                 | None -> string_of_tc_ seqs' curr
               in ("\n  " ^ correct_symbol ^ " " ^ str ^ s, ans_s, out_s)
-            else ("\n  " ^ wrong_symbol ^ " " ^ str, "", "")
+            else
+              let ans_s =
+                match ans with
+                | Some loc -> string_of_location loc
+                | None -> "  NOMOVE"
+              in
+              let out_s =
+                match output with
+                | Some loc -> string_of_location loc
+                | None -> "  NOMOVE"
+              in ("\n  " ^ wrong_symbol ^ " " ^ str, "\n" ^ ans_s ^ "\n", "\n" ^ out_s ^ "\n")
 
       in
         match tc with
         | TREE (t, seqs) ->
             let (s, ans_s, out_s) = string_of_tc_ seqs (LOC (t, TOP))
-            in ("\n  start from top of tree\n" ^ (string_of_tree t) ^ s, ans_s, out_s)
+            in ("\n  start from top of tree\n" ^ (string_of_tree t t) ^ s, ans_s, out_s)
 
     let testcases =
       [ TREE
@@ -159,7 +183,6 @@ module TestEx5: TestEx =
         ; NOMOVE_RIGHT
         ; GOLEFT (LOC (LEAF "*", HAND ([LEAF "c"], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []), [LEAF "d"])))
         ; GOLEFT (LOC (LEAF "c", HAND ([], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], TOP, []), [LEAF "*"; LEAF "d"])))
-        ; NOMOVE_RIGHT
         ]
       )
       ; TREE
@@ -171,7 +194,6 @@ module TestEx5: TestEx =
         ; NOMOVE_LEFT
         ]
       )
-      ; TREE (LEAF "adsf", [GODOWN (LOC (LEAF "adsf", TOP))])
       ]
   end
 
