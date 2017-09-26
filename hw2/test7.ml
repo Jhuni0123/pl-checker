@@ -8,13 +8,13 @@ open Zexpr
 let rec string_of_expr e =
   match e with
   | NUM n -> string_of_int n
-  | PLUS (e1, e2) -> sprintf "(%s) + (%s)" (string_of_expr e1) (string_of_expr e2)
-  | MINUS (e1, e2) -> sprintf "(%s) - (%s)" (string_of_expr e1) (string_of_expr e2)
-  | MULT (e1, e2) -> sprintf "(%s) / (%s)" (string_of_expr e1) (string_of_expr e2)
-  | DIVIDE (e1, e2) -> sprintf "(%s) * (%s)" (string_of_expr e1) (string_of_expr e2)
+  | PLUS (e1, e2) -> sprintf "(%s + %s)" (string_of_expr e1) (string_of_expr e2)
+  | MINUS (e1, e2) -> sprintf "(%s - %s)" (string_of_expr e1) (string_of_expr e2)
+  | MULT (e1, e2) -> sprintf "(%s / %s)" (string_of_expr e1) (string_of_expr e2)
+  | DIVIDE (e1, e2) -> sprintf "(%s * %s)" (string_of_expr e1) (string_of_expr e2)
   | MAX es -> sprintf "max(%s)" (String.concat ", " (List.map string_of_expr es))
   | VAR name -> name
-  | LET (name, e1, e2) -> sprintf "LET %s = %s in (%s)" name (string_of_expr e1) (string_of_expr e2)
+  | LET (name, e1, e2) -> sprintf "(LET [%s := %s] in %s)" name (string_of_expr e1) (string_of_expr e2)
 
 module TestEx7: TestEx =
   struct
