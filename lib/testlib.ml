@@ -12,6 +12,16 @@ let test_testcase num tc runner string_of_tc =
     let (tc_s, ans_s, output_s) = string_of_tc tc in
     printf "%s Test %d: %s\n  answer: %s, output: %s\n" wrong_symbol num tc_s ans_s output_s
 
+let test_testcase2 num tc runner result_of_tc print_res =
+  if runner tc then printf "%s Test %d\n" correct_symbol num
+  else
+    let (tc_s, ans, out) = result_of_tc tc in
+    let _ = printf "%s Test %d: %s\n  answer: " wrong_symbol num tc_s in
+    let _ = print_res ans in
+    let _ = print_string ", output: " in
+    let _ = print_res out in
+    print_string "\n"
+
 let test_exercise exnum tcs runner string_of_tc =
   let _ = printf "# Test Exercise %d\n" exnum in
   let rec test_exercise_ tcnum tcs runner =
@@ -19,6 +29,16 @@ let test_exercise exnum tcs runner string_of_tc =
     | [] -> ()
     | tc::tcs' ->
         let _ = test_testcase tcnum tc runner string_of_tc
+        in test_exercise_ (tcnum+1) tcs' runner
+  in test_exercise_ 1 tcs runner
+
+let test_exercise2 exnum tcs runner result_of_tc print_res =
+  let _ = printf "# Test Exercise %d\n" exnum in
+  let rec test_exercise_ tcnum tcs runner =
+    match tcs with
+    | [] -> ()
+    | tc::tcs' ->
+        let _ = test_testcase2 tcnum tc runner result_of_tc print_res
         in test_exercise_ (tcnum+1) tcs' runner
   in test_exercise_ 1 tcs runner
 
@@ -31,6 +51,12 @@ let summary_exercise exnum tcs runner =
 let wrapper a1 a2 a3 a4 =
   if Array.length Sys.argv = 1 then
     test_exercise a1 a2 a3 a4
+  else
+    summary_exercise a1 a2 a3
+
+let wrapper2 a1 a2 a3 a4 a5 =
+  if Array.length Sys.argv = 1 then
+    test_exercise2 a1 a2 a3 a4 a5
   else
     summary_exercise a1 a2 a3
 

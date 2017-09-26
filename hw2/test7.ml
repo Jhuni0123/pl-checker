@@ -16,7 +16,7 @@ let rec string_of_expr e =
   | VAR name -> name
   | LET (name, e1, e2) -> sprintf "(LET [%s := %s] in %s)" name (string_of_expr e1) (string_of_expr e2)
 
-module TestEx7: TestEx =
+module TestEx7 =
   struct
     let exnum = 7
 
@@ -32,11 +32,7 @@ module TestEx7: TestEx =
             try Some (eval(emptyEnv, e))
             with Error str -> None
           in out = None
-          (*
-          let _ = print_endline "- two line below should be same" in
-          let _ = print_string "output: "; print_value (eval(emptyEnv, e)); print_endline "" in
-          let _ = print_string "answer: "; print_int v; print_endline "" in true
-*)
+
     let string_of_tc tc =
       match tc with
       | EVAL (e, ans) ->
@@ -49,6 +45,25 @@ module TestEx7: TestEx =
           , "exception Error"
           , ""
           )
+
+    let result_of_tc tc =
+      let (tc_s, a, b) = string_of_tc tc in
+      match tc with
+      | EVAL (e, ans) ->
+          let out =
+            try Some (eval(emptyEnv, e))
+            with Error msg -> None
+          in (tc_s, Some (eval(emptyEnv, NUM ans)), out)
+      | ERROR e ->
+          let out =
+            try Some (eval(emptyEnv, e))
+            with Error msg -> None
+          in (tc_s, None, out)
+
+    let print_res res =
+      match res with
+      | None -> print_string "exception Error FreeVariable"
+      | Some v -> print_value v
 
     let testcases =
       [ EVAL (NUM 1, 1)
@@ -71,5 +86,6 @@ module TestEx7: TestEx =
       ]
   end
 
+
 open TestEx7
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper2 exnum testcases runner result_of_tc print_res
