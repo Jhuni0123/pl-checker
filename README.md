@@ -25,3 +25,6 @@ git pull origin master
 # Screenshot
 ### 2-5: Zip-Zip Tree
 ![2-5](img/PL_2-5.png)
+
+---
+[MIT License](LICENSE)
