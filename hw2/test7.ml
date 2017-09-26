@@ -22,10 +22,16 @@ module TestEx7: TestEx =
 
     type testcase =
       | EVAL of expr * int
+      | ERROR of expr
 
     let runner tc =
       match tc with
       | EVAL (e, ans) -> eval(emptyEnv, e) = eval(emptyEnv, NUM ans)
+      | ERROR e ->
+          let out =
+            try Some (eval(emptyEnv, e))
+            with Error str -> None
+          in out = None
           (*
           let _ = print_endline "- two line below should be same" in
           let _ = print_string "output: "; print_value (eval(emptyEnv, e)); print_endline "" in
@@ -37,6 +43,11 @@ module TestEx7: TestEx =
           ( sprintf "eval(emptyEnv, %s)" (string_of_expr e)
           , string_of_expr (NUM ans)
           , "" (* string_of_expr (NUM (eval(emptyEnv, e))) *)
+          )
+      | ERROR e ->
+          ( sprintf "eval(emptyEnv, %s)" (string_of_expr e)
+          , "exception Error"
+          , ""
           )
 
     let testcases =
@@ -54,6 +65,9 @@ module TestEx7: TestEx =
       ; EVAL (LET ("x", NUM 20, LET ("y", MULT (VAR "x", VAR "x"), LET ("x", VAR "x", PLUS (VAR "x", VAR "y")))), 420)
       ; EVAL (LET ("x", NUM 30, LET ("y", VAR "x", LET ("x", VAR "y", LET ("y", VAR "x", VAR "y")))), 30)
       ; EVAL (LET ("var", NUM 1000, LET ("let", PLUS (VAR "var", VAR "var"), MULT (VAR "let", VAR "let"))), 4000000)
+      ; ERROR (VAR "x")
+      ; ERROR (LET ("x", VAR "x", VAR "x"))
+      ; ERROR (LET ("x", NUM 10, LET ("y", VAR "x", VAR "z")))
       ]
   end
 
