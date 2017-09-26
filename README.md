@@ -22,3 +22,6 @@ git pull origin master
 # Status
 - **2-7**: It does not print user output
 
+# Screenshot
+### 2-5: Zip-Zip Tree
+![2-5](img/PL_2-5.png)
