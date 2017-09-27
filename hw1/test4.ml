@@ -29,10 +29,10 @@ module TestEx4: TestEx =
       match tc with
       | ADD (n1, n2, ans) ->
           let output = int_of_nat (natadd ((nat_of_int n1), (nat_of_int n2))) in
-          (Printf.sprintf "natadd(%d, %d)" n1 n2, string_of_int output, string_of_int ans)
+          (Printf.sprintf "natadd(%d, %d)" n1 n2, string_of_int ans, string_of_int output)
       | MUL (n1, n2, ans) ->
           let output = int_of_nat (natmul ((nat_of_int n1), (nat_of_int n2))) in
-          (Printf.sprintf "natmul(%d, %d)" n1 n2, string_of_int output, string_of_int ans)
+          (Printf.sprintf "natmul(%d, %d)" n1 n2, string_of_int ans, string_of_int output)
 
     let testcases: testcase list =
       [ ADD (0,0,0)

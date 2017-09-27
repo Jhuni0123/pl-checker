@@ -34,7 +34,7 @@ module TestEx1: TestEx =
 
     let string_of_tc tc =
       match tc with
-      | EVAL (f, ans) -> (string_of_fomula f, string_of_bool (eval f), string_of_bool ans)
+      | EVAL (f, ans) -> (string_of_fomula f, string_of_bool ans, string_of_bool (eval f))
 
     let testcases =
       [ EVAL (TRUE, true)

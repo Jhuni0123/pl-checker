@@ -21,7 +21,7 @@ module TestEx4: TestEx =
 
     let string_of_tc tc =
       match tc with
-      | CHECK (m, ans) -> (Printf.sprintf "checkMetro (%s)" (string_of_metro m), string_of_bool (checkMetro m), string_of_bool ans)
+      | CHECK (m, ans) -> (Printf.sprintf "checkMetro (%s)" (string_of_metro m), string_of_bool ans, string_of_bool (checkMetro m))
 
     let testcases =
       [ CHECK (AREA ("a", STATION "a"), true)

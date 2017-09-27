@@ -17,8 +17,8 @@ module TestEx2: TestEx =
       match tc with
       | SIGMA (a, b, f, fs, ans) ->
           ( Printf.sprintf "sigma(%d, %d, %s)" a b fs
-          , string_of_int (sigma(a,b,f))
           , string_of_int ans
+          , string_of_int (sigma(a,b,f))
           )
 
     let testcases: testcase list =

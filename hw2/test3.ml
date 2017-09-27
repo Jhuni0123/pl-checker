@@ -36,8 +36,8 @@ module TestEx3: TestEx =
       match tc with
       | ADD (c1, c2, ans) ->
           ( Printf.sprintf "crazy2add(%s, %s)" c1 c2
-          , string_of_int (magic (crazy2add ((crazy2_of_string c1), (crazy2_of_string c2))))
           , string_of_int ans
+          , string_of_int (magic (crazy2add ((crazy2_of_string c1), (crazy2_of_string c2))))
           )
 
     let testcases =
