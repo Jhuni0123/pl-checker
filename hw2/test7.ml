@@ -75,6 +75,8 @@ module TestEx7 =
       ; EVAL (MAX [], 0)
       ; EVAL (MAX [NUM (-98765)], -98765)
       ; EVAL (MAX [NUM 10; NUM 20; NUM 30], 30)
+      ; EVAL (MAX [NUM 30; NUM 20; NUM 10], 30)
+      ; EVAL (MAX [NUM 1; NUM 1; NUM 2; NUM 1; NUM 1], 2)
       ; EVAL (LET ("x", NUM 15, VAR "x"), 15)
       ; EVAL (LET ("x", NUM 17, LET ("y", VAR "x", LET ("x", NUM 30, VAR "y"))), 17)
       ; EVAL (LET ("x", NUM 20, LET ("y", MULT (VAR "x", VAR "x"), LET ("x", VAR "x", PLUS (VAR "x", VAR "y")))), 420)
