@@ -15,6 +15,8 @@ you should write `hw<hwnum>/ex<exnum>.ml` for test \<hwnum>-\<exnum>
 - `make` (= `./check.sh`): compile every exercise in current hw folder (hw\<hwnum>), run test, and show summary
 
 # HOW TO UPDATE
+**This repository is often updated**
+**Please Update periodically**
 ```bash
 git pull origin master
 ```
