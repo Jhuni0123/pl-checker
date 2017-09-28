@@ -18,7 +18,7 @@ you should write `hw<hwnum>/ex<exnum>.ml` for test \<hwnum>-\<exnum>
 **This repository is often updated.**
 **Please Update periodically!!**
 ```bash
-make update
+make update # git pull --rebase origin master
 ```
 
 # Status

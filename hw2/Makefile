@@ -14,7 +14,7 @@ test:
 	@./check.sh ${ARGS}
 
 update:
-	git pull origin master
+	git pull --rebase origin master
 
 clean:
 	@rm -f *.cmo *.cmi *.out *.o *.cmx
