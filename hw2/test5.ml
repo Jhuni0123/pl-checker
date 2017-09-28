@@ -201,6 +201,15 @@ module TestEx5: TestEx =
         ; NOMOVE_RIGHT
         ; GODOWN (LOC (NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]])))
         ; NOMOVE_LEFT
+        ; GODOWN (LOC (NODE [LEAF "a"; LEAF "*"; LEAF "b"], HAND ([], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]])))
+        ; GORIGHT (LOC (LEAF "+", HAND ([NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]])))
+        ; GORIGHT (LOC (NODE [LEAF "c"; LEAF "*"; LEAF "d"], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]])))
+        ; GORIGHT (LOC (LEAF "-", HAND ([NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [NODE [LEAF "e"; LEAF "/"; LEAF "f"]])))
+        ; GORIGHT (LOC (NODE [LEAF "e"; LEAF "/"; LEAF "f"], HAND ([LEAF "-"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [])))
+        ; NOMOVE_RIGHT
+        ; GOLEFT (LOC (LEAF "-", HAND ([NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [NODE [LEAF "e"; LEAF "/"; LEAF "f"]])))
+        ; GOLEFT (LOC (NODE [LEAF "c"; LEAF "*"; LEAF "d"], HAND ([LEAF "+"; NODE [LEAF "a"; LEAF "*"; LEAF "b"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]]), [LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]])))
+        ; GOUP (LOC (NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]])))
         ]
       )
       ]
