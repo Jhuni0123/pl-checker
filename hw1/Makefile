@@ -5,13 +5,16 @@ ifeq (test,$(firstword $(MAKECMDGOALS)))
   $(eval $(ARGS):;@:)
 endif
 
-.PHONY: test clean
+.PHONY: test clean update
 
 all:
 	@./check.sh
 
 test:
 	@./check.sh ${ARGS}
+
+update:
+	git pull origin master
 
 clean:
 	@rm -f *.cmo *.cmi *.out *.o *.cmx
