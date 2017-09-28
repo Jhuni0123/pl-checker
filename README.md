@@ -20,6 +20,8 @@ you should write `hw<hwnum>/ex<exnum>.ml` for test \<hwnum>-\<exnum>
 - `make test <exnum>` (= `./check.sh <exnum>`): complile exercise \<exnum> and run test, and show results of every testcase
 - `make` (= `./check.sh`): compile every exercise in current hw folder (hw\<hwnum>), run test, and show summary
 
+윈도우 등에서 `make`가 없는 환경이라면 `make` 대신 `./check.sh`, `make test 1` 대신 `./check.sh 1` 을 사용해주세요. If you don't have `make`, use `./check.sh` instead of `make`, `./check.sh 1` instead of `make test 1`.
+
 # HOW TO UPDATE
 **테스트케이스가 종종 업데이트 됩니다. 주기적으로 업데이트 해주세요!**
 **This repository is often updated. Please Update periodically!!**
