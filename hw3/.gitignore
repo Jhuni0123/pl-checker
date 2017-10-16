@@ -1,5 +1,8 @@
 *.k-
 !example/*.k-
+!example/*.out
+!example/*.in
+*.out
 k.ml
 run
 lexer.ml

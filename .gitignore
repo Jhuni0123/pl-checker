@@ -1,5 +1,4 @@
 ex*.ml
-*.out
 *.cmi
 *.cmo
 *.cmx
