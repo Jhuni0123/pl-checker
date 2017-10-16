@@ -1,0 +1,7 @@
+*.k-
+!example/*.k-
+k.ml
+run
+lexer.ml
+parser.ml
+parser.mli
