@@ -1,0 +1,21 @@
+(* test case 17 : recursive record *)
+let r := {r := unit, value := 123} in
+let p := {r := unit, value := 234} in
+let q := {r := p, value := 345} in
+( r.r := r;
+  p.r := q;
+  q.r := p;
+  write r.r.r.r.r.r.r.r.r.r.r.r.r.r.r.r.value;
+  write p.r.r.r.r.r.r.r.r.r.r.r.r.r.r.r.value;
+  write q.r.r.r.r.r.r.r.r.r.r.r.r.r.r.r.value;
+  write p.r.r.r.r.r.r.r.r.r.r.r.r.r.r.value;
+  write q.r.r.r.r.r.r.r.r.r.r.r.r.r.r.value
+)
+
+(* output :
+123
+345
+234
+234
+345
+*)

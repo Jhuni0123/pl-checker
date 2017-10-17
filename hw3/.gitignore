@@ -1,4 +1,5 @@
 *.k-
+*.txt
 examples/*.myout
 !examples/*.k-
 !examples/*.out

@@ -1,0 +1,39 @@
+(* testcase 15 *)
+
+let sum := 0 in
+let proc f (x, y, s) =
+  if x < 0 then s
+  else
+    ( sum := sum + x;
+      s := s + x;
+      x := x - y;
+      f <x, y, s>
+    )
+in
+let x := 100 in
+let y := 2 in
+let z := 0 in
+( write sum;
+  write f(x, y, 0);
+  write sum;
+  write f<x, y, z>;
+  write sum;
+  write f(100, 2, 0);
+  write sum;
+  write x;
+  write y;
+  write z
+)
+
+(* output :
+0
+2550
+2550
+2550
+5100
+2550
+7650
+-2
+2
+2550
+*)

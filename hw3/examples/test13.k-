@@ -1,0 +1,15 @@
+(* test case 13 : boolean operations *)
+
+let proc print_bool (b) =
+  if b then write 1
+  else write 0
+in
+let x := true in
+let y := true in
+let z := (x := false) = (x = true) in
+let x := not x in
+let y := not not x in
+( print_bool (x);
+  print_bool (y);
+  print_bool (z)
+)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TESTCASES=(1 2 3 4 5 6 7 8 9 10)
+TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17)
 TESTDIR="examples"
 WRONG="$(tput setaf 1)✗$(tput sgr0)"
 CORRECT="$(tput setaf 2)✓$(tput sgr0)"
