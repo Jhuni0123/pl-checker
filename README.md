@@ -6,7 +6,7 @@
 git clone https://github.com/Jhuni0123/pl-checker.git
 cd pl-checker
 cd hw<num>
-# please read README.md
+./check # please read README.md
 ```
 [hw1](hw1) | [hw2](hw2) | [hw3](hw3)
 
