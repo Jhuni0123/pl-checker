@@ -1,0 +1,12 @@
+(* test case 11 : while + call by ref *)
+
+let proc add (sum, x) =
+  sum := sum + x
+in
+let x := 0 in
+let sum := 0 in
+( while (x < 100) do (add<sum, x>; x := x + 1);
+  write sum
+)
+
+(* output : 4950 *)

@@ -1,12 +1,11 @@
 ex*.ml
-*.out
 *.cmi
 *.cmo
 *.cmx
 *.o
 *.pdf
 *.swp
-hw3
+*.out
 hw4
 hw5
 hw6

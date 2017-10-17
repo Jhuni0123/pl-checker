@@ -1,0 +1,30 @@
+(* test case 12 : arithmetic operations *)
+
+let x := 5 in
+let y := 17 in
+let z := 41 in
+let w := 101 in
+
+let p := (x := 7) + (x + y) in
+let q := (y := 13) - (y - x) in
+let n := (z := 37) * z in
+let m := (w := 53) / (w / 10) in
+
+let t := (z - y + x) * (n / m * x) in
+let r := if p < q then 1 else 0 in
+( write p;
+  write q;
+  write n;
+  write m;
+  write t;
+  write r
+)
+
+(* output :
+31
+7
+1369
+10
+29512
+0
+*)

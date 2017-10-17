@@ -1,0 +1,18 @@
+(* test case 16 : function argument evaluation *)
+
+let proc f (x, y, z) =
+  write(x);
+  write(y);
+  write(z);
+  (x + y * z - 3) / 6
+in
+let x := 3 in
+let y := 5 in
+write (f (x := x + y, y := x * y, x + y))
+
+(* output :
+8
+40
+48
+320
+*)
