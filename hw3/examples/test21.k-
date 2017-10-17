@@ -1,0 +1,13 @@
+(* test case 21 : function callr invalid argument *)
+
+let proc f(x, y) =
+  x + y
+in
+let x := 1 in
+let y := 2 in
+let z := 3 in
+f <x, y, z>
+
+(* output :
+Error : InvalidArg
+*)

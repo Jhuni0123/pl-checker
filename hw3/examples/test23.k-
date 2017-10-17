@@ -1,0 +1,8 @@
+(* test case 23 : unbounded record field *)
+
+let r := {xyz := 1} in
+write (r.x)
+
+(* output :
+Error : Unbound
+*)

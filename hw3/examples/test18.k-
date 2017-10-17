@@ -1,0 +1,10 @@
+(* test case 18 : LETF arg binding *)
+
+let proc f (x,y) =
+  x + y
+in
+write f(3,x)
+
+(* output :
+Error : Unbound
+*)
