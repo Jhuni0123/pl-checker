@@ -2,6 +2,7 @@
 > 2017F Programming Language Homework Checker
 
 # How to use
+unix 기반 환경을 필요로 합니다
 ```bash
 git clone https://github.com/Jhuni0123/pl-checker.git
 cd pl-checker
