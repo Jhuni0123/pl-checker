@@ -14,6 +14,7 @@ cd hw<num>
 # How to update
 **테스트케이스가 종종 업데이트 됩니다. 주기적으로 업데이트 해주세요!** <br>
 업데이트 해도 작성한 파일이 덮어씌워지지 않습니다.
+
 ```bash
 git pull --rebase origin master
 ```
