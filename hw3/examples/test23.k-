@@ -1,8 +1,13 @@
 (* test case 23 : unbounded record field *)
 
+let x := 123 in
+let xyz := 1234 in
 let r := {xyz := 1} in
-write (r.x)
+( write (r.xyz);
+  write (r.x)
+)
 
 (* output :
+1
 Error : Unbound
 *)
