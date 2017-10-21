@@ -2,9 +2,16 @@
 ## How to use
 1. 구현한 `k.ml`을 복사하거나 뼈대코드`k.ml.orig`을 `k.ml`로 바꾼 후 구현합니다.
 2. `./check` 명령어를 통해 테스트케이스를 실행합니다.
-    - `examples/test<num>.k-` : 프로그램
-    - `examples/test<num>.ans` : 정답
-    - `examples/test<num>.out` : 출력
+
+### 3-1
+- `examples/test<num>.k-` : 테스트케이스
+- `examples/test<num>.ans` : 정답
+- `examples/test<num>.out` : 출력
+
+### 3-2, 3-3
+- `exercises/test<ex>-<num>.k-` : 테스트케이스
+- `exercises/test<ex>-<num>.ans` : 정답
+- `exercises/test<ex>-<num>.out` : 출력
 
 ---
 
