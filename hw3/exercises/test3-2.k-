@@ -1,0 +1,16 @@
+(
+let tree := makeTree(1, makeTree(2, leaf(4), makeTree(5, leaf(6), leaf(7))), leaf(3)) in
+
+dft(tree);
+bft(tree)
+)
+
+(*
+    1
+   / \
+  2   3
+ / \
+4   5
+   / \
+  6   7
+*)
