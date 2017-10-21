@@ -17,14 +17,8 @@ let r := {x := 1} in
   print_bool (true = true);
   print_bool (false = true);
   print_bool (true = false);
-
   print_bool (123 = (-123));
   print_bool (unit = 123);
   print_bool (true = 1);
-  print_bool (r = 1);
-  print_bool (r = r); (* warning: fatal error *)
-  print_bool ({x := 1} = {x := 1});
-
-  print_bool (unit = {})
+  print_bool (r = 1)
 )
-

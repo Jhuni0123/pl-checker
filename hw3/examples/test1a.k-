@@ -1,0 +1,14 @@
+(* advanced test case  : equal *)
+
+let proc print_bool (b) =
+  if b then write 1
+  else write 0
+in
+let r := {x := 1} in
+(
+  print_bool (r = r); (* warning: fatal error *)
+  print_bool ({x := 1} = {x := 1});
+
+  print_bool (unit = {})
+)
+
