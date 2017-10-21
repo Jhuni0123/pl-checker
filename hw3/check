@@ -2,7 +2,7 @@
 
 TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24)
 ATESTCASES=(1)
-TC2=(1)
+TC2=(1 2 3 4 5 6 7 8 9 10 11 12)
 TC3=(1 2 3)
 TESTDIR="examples"
 EXDIR="exercises"
@@ -68,15 +68,22 @@ do
     else
         SRC="${EXDIR}/ex2.k-"
     fi
-    sed '$s/2017//' "${SRC}" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
-    COMM="./run ${TFILE}.tmp.k- > ${TFILE}.out"
+
+    COMM="./run ${SRC} < ${TFILE}.in > ${TFILE}.out"
 
     eval "${COMM}"
 
-    rm "${TFILE}.tmp.k-"
-
     eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
-    result $?
+    if [ "$?" == 1 ]
+    then
+        echo "${WRONG}"
+        echo "answer:"
+        cat "${TFILE}.ans"
+        echo "output:"
+        cat "${TFILE}.out"
+    else
+        echo "${CORRECT}"
+    fi
 done
 
 echo "# Testing Exercise 3"
