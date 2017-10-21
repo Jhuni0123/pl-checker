@@ -50,10 +50,12 @@ do
     else
         SRC="${EXDIR}/ex2.k-"
     fi
-    sed '$s/2017//' "${EXDIR}/ex2.k-" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
+    sed '$s/2017//' "${SRC}" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
     COMM="./run ${TFILE}.tmp.k- > ${TFILE}.out"
 
     eval "${COMM}"
+
+    rm "${TFILE}.tmp.k-"
 
     eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
@@ -74,6 +76,8 @@ do
     COMM="./run ${TFILE}.tmp.k- > ${TFILE}.out"
 
     eval "${COMM}"
+
+    rm "${TFILE}.tmp.k-"
 
     eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
