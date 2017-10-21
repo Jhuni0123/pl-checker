@@ -97,7 +97,9 @@ do
     else
         SRC="${EXDIR}/ex3.k-"
     fi
-    sed '$s/2017//' "${SRC}" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
+
+    sed -e "/2017/ r ${TFILE}.k-" -e "s/2017//" "${SRC}" > "${TFILE}.tmp.k-"
+
     COMM="./run ${TFILE}.tmp.k- > ${TFILE}.out"
 
     eval "${COMM}"
