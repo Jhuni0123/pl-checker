@@ -1,9 +1,13 @@
 *.k-
 *.txt
-examples/*.myout
+*.myout
 !examples/*.k-
 !examples/*.out
 !examples/*.in
+exercises/ex*.k-
+!exercises/test*.k-
+exercises/test*.tmp.k-
+!exercise/test*.out
 k.ml
 run
 lexer.ml
