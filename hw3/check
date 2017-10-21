@@ -95,7 +95,7 @@ do
 
     eval "${COMM}"
 
-    #rm "${TFILE}.tmp.k-"
+    rm "${TFILE}.tmp.k-"
 
     eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
