@@ -26,7 +26,7 @@ for TC in "${TESTCASES[@]}"
 do
     TFILE="${TESTDIR}/test${TC}"
     printf "Test %s..." "${TC}"
-    COMM="./run ${TFILE}.k- > ${TFILE}.myout"
+    COMM="./run ${TFILE}.k- > ${TFILE}.out"
     if [ -f "${TFILE}.in" ]
     then
         COMM="${COMM} < ${TFILE}.in"
@@ -34,7 +34,7 @@ do
 
     eval "${COMM}"
 
-    eval "diff ${TFILE}.out ${TFILE}.myout > /dev/null"
+    eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
 done
 
@@ -44,12 +44,18 @@ do
     TFILE="${EXDIR}/test2-${TC}"
     printf "Test %s..." "${TC}"
 
+    if [ -f "${EXDIR}/ex2.txt" ]
+    then
+        SRC="${EXDIR}/ex2.txt"
+    else
+        SRC="${EXDIR}/ex2.k-"
+    fi
     sed '$s/2017//' "${EXDIR}/ex2.k-" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
-    COMM="./run ${TFILE}.tmp.k- > ${TFILE}.myout"
+    COMM="./run ${TFILE}.tmp.k- > ${TFILE}.out"
 
     eval "${COMM}"
 
-    eval "diff ${TFILE}.out ${TFILE}.myout > /dev/null"
+    eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
 done
 
@@ -58,12 +64,17 @@ for TC in "${TC3[@]}"
 do
     TFILE="${EXDIR}/test3-${TC}"
     printf "Test %s..." "${TC}"
-
-    sed '$s/2017//' "${EXDIR}/ex3.k-" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
-    COMM="./run ${TFILE}.tmp.k- > ${TFILE}.myout"
+    if [ -f "${EXDIR}/ex3.txt" ]
+    then
+        SRC="${EXDIR}/ex3.txt"
+    else
+        SRC="${EXDIR}/ex3.k-"
+    fi
+    sed '$s/2017//' "${SRC}" > "${TFILE}.tmp.k-" && cat "${TFILE}.k-" >> "${TFILE}.tmp.k-"
+    COMM="./run ${TFILE}.tmp.k- > ${TFILE}.out"
 
     eval "${COMM}"
 
-    eval "diff ${TFILE}.out ${TFILE}.myout > /dev/null"
+    eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
 done
