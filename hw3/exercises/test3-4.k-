@@ -1,0 +1,14 @@
+(
+let tree := makeRtree(1, leaf(2)) in
+let emptyTree := lTree(tree) in
+dft(emptyTree);
+bft(emptyTree);
+if isEmpty (emptyTree) then write (1) else write (0)
+)
+
+(*
+       1
+      / \
+ empty   2
+
+*)
