@@ -8,10 +8,10 @@ endif
 .PHONY: test clean update
 
 all:
-	@./check.sh
+	@./check
 
 test:
-	@./check.sh ${ARGS}
+	@./check ${ARGS}
 
 update:
 	git pull --rebase origin master
