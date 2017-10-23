@@ -230,6 +230,34 @@ module TestEx1: TestEx =
           ; (E, [])
           ]
         )
+      ; SHOP
+        ( [ (A, [Same B])
+          ; (B, [Same C])
+          ; (C, [Same D])
+          ; (D, [Same E])
+          ; (E, [Items [3;1;2]])
+          ]
+        , [ (A, [1;2;3])
+          ; (B, [1;2;3])
+          ; (C, [1;2;3])
+          ; (D, [1;2;3])
+          ; (E, [1;2;3])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [3;1;2]])
+          ; (B, [Same A])
+          ; (C, [Same B])
+          ; (D, [Same C])
+          ; (E, [Same D])
+          ]
+        , [ (A, [1;2;3])
+          ; (B, [1;2;3])
+          ; (C, [1;2;3])
+          ; (D, [1;2;3])
+          ; (E, [1;2;3])
+          ]
+        )
       ]
 
     let string_of_id x =
