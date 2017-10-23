@@ -1,0 +1,37 @@
+#!/bin/bash
+HWNUM=4
+EXERCISES=(2)
+LIB_PATH="../lib/"
+LIBSRC="testlib.ml"
+
+function check {
+    echo "# Exercise ${1}"
+    ocamlc -I "${LIB_PATH}" -o ex"${EX}".out ${LIB_PATH}${LIBSRC} ex"${EX}".ml test"${EX}".ml \
+        && ./ex"${EX}".out ${2}
+}
+
+if [[ $# -eq 0 ]]
+then
+    echo "== Homework ${HWNUM} =="
+    for EX in "${EXERCISES[@]}"; do
+        check "${EX}" summary
+    done
+elif [[ $# -eq 1 ]]
+then
+    VALID=0
+    for EX in "${EXERCISES[@]}"; do
+        if [[ $1 -eq ${EX} ]]
+        then
+            VALID=1
+            break
+        fi
+    done
+    if [[ ${VALID} -eq 1 ]]
+    then
+        check "${1}"
+    else
+        echo "Error: Exercise ${1} not found"
+    fi
+else
+    echo "Error: Too many arguments"
+fi
