@@ -17,4 +17,4 @@ update:
 	git pull --rebase origin master
 
 clean:
-	@rm -f *.cmo *.cmi *.out *.o *.cmx
+	@rm -f *.cmo *.cmi *.out *.o *.cmx ../lib/*.cmo ../lib/*.cmi

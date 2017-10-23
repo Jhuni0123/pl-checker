@@ -23,7 +23,7 @@ let test_testcase2 num tc runner result_of_tc print_res =
     print_string "\n"
 
 let test_exercise exnum tcs runner string_of_tc =
-  let _ = printf "# Test Exercise %d\n" exnum in
+  (*let _ = printf "# Test Exercise %d\n" exnum in*)
   let rec test_exercise_ tcnum tcs runner =
     match tcs with
     | [] -> ()
@@ -33,7 +33,7 @@ let test_exercise exnum tcs runner string_of_tc =
   in test_exercise_ 1 tcs runner
 
 let test_exercise2 exnum tcs runner result_of_tc print_res =
-  let _ = printf "# Test Exercise %d\n" exnum in
+  (*let _ = printf "# Test Exercise %d\n" exnum in*)
   let rec test_exercise_ tcnum tcs runner =
     match tcs with
     | [] -> ()
@@ -43,7 +43,7 @@ let test_exercise2 exnum tcs runner result_of_tc print_res =
   in test_exercise_ 1 tcs runner
 
 let summary_exercise exnum tcs runner =
-  let _ = printf "# Test Exercise %d\n" exnum in
+  (*let _ = printf "# Test Exercise %d\n" exnum in*)
   let total = List.length tcs in
   let passed = List.length (List.filter runner tcs) in
   printf "%s Passed %d/%d Cases\n" (if passed = total then correct_symbol else wrong_symbol) passed total
