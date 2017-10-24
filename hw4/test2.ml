@@ -95,6 +95,48 @@ module TestEx1: TestEx =
           ]
         )
       ; SHOP
+        ( [ (A, [Items [1;2;3]])
+          ; (B, [Same A])
+          ; (C, [Same A])
+          ; (D, [Same A])
+          ; (E, [Same A])
+          ]
+        , [ (A, [1;2;3])
+          ; (B, [1;2;3])
+          ; (C, [1;2;3])
+          ; (D, [1;2;3])
+          ; (E, [1;2;3])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [1;2;3;4]])
+          ; (B, [Items [2;3;4;5]])
+          ; (C, [Common (Same A, Same B)])
+          ; (D, [Items [3;4;5;6]])
+          ; (E, [Common (Same C, Same D)])
+          ]
+        , [ (A, [1;2;3;4])
+          ; (B, [2;3;4;5])
+          ; (C, [2;3;4])
+          ; (D, [3;4;5;6])
+          ; (E, [3;4])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [1;2;3;4;5;6;7]])
+          ; (B, [Except (Same A, [1;4])])
+          ; (C, [Except (Same B, [2;3])])
+          ; (D, [Except (Same C, [5;6])])
+          ; (E, [Except (Same D, [7])])
+          ]
+        , [ (A, [1;2;3;4;5;6;7])
+          ; (B, [2;3;5;6;7])
+          ; (C, [5;6;7])
+          ; (D, [7])
+          ; (E, [])
+          ]
+        )
+      ; SHOP
         ( [ (A, [Items [1; 2; 3]; Except (Items [5; 6; 7], [6]); Common (Same (D), Same (E))])
           ; (B, [Common (Same (A), Same (B)); Common (Same (B), Same (C)); Except (Same (D), [9])])
           ; (C, [Common (Same (B), Same (C)); Except (Same (E), [1; 6]); Common (Same (A), Same (D))])
