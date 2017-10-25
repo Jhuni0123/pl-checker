@@ -22,7 +22,6 @@ git pull --rebase origin master
 ```
 
 # Status
-- 4-3 : TBD
 - HW 5~ : TBD
 
 # Thanks to
