@@ -52,36 +52,45 @@ module TestEx3: TestEx =
           if fstc = 0 then compare k12 k22
           else fstc
 
+    let sort = List.sort compare_key
+
     let runner (tc: testcase): bool =
       match tc with
-      | GETREADY (m, ans) -> (getReady m |> List.sort compare_key) = (ans |> List.sort compare_key)
+      | GETREADY (m, ans) ->
+          let output =
+            try Some (getReady m |> sort)
+            with IMPOSSIBLE -> None
+          in output = Some (ans |> sort)
       | FAIL m ->
-          let res =
+          let output =
             try Some (getReady m)
-            with _ -> None
-          in res = None
+            with IMPOSSIBLE -> None
+          in output = None
+
+    let string_of_output out =
+      match out with
+      | Some res -> string_of_key_list res
+      | None -> "exception IMPOSSIBLE"
 
     let string_of_tc (tc: testcase): string * string * string =
       match tc with
       | GETREADY (m, ans) ->
-          let output = getReady m in
+          let output =
+            try Some (getReady m |> sort)
+            with IMPOSSIBLE -> None
+          in
           ( Printf.sprintf "\n  getReady  %s" (string_of_map m)
-          , string_of_key_list ans
-          , string_of_key_list output
+          , string_of_output (Some (ans |> sort))
+          , string_of_output output
           )
       | FAIL m ->
           let output =
-            try Some (getReady m)
-            with _ -> None
-          in
-          let str out =
-            match out with
-            | Some res -> string_of_key_list res
-            | None -> "exception IMPOSSIBLE"
+            try Some (getReady m |> sort)
+            with IMPOSSIBLE -> None
           in
           ( Printf.sprintf "\n  getReady  %s" (string_of_map m)
-          , str None
-          , str output
+          , string_of_output None
+          , string_of_output output
           )
   end
 
