@@ -15,56 +15,6 @@ module TestEx6: TestEx =
       | DEQ of int list
       | DEQ_EMPTYQ
 
-    let runner tc =
-      let rec runner_ l q =
-        match l with
-        | [] -> true
-        | (h::tc') ->
-            match h with
-            | ENQ l -> runner_ tc' (enQ (q, l))
-            | DEQ l ->
-                let (l', q') = deQ q in
-                if l' = l then runner_ tc' q'
-                else false
-            | DEQ_EMPTYQ ->
-                let res =
-                  try Some (deQ q)
-                  with EMPTY_Q -> None
-                in res = None
-      in
-      match tc with
-      | SEQ l -> runner_ l emptyQ
-
-    let string_of_tc tc =
-      let rec string_of_seqs seqs q =
-        match seqs with
-        | [] -> ("", "", "")
-        | (h::seqs') ->
-            let string_of_int_list = string_of_list string_of_int in
-            match h with
-            | ENQ l ->
-                let (s, ans, out) = string_of_seqs seqs' (enQ (q, l)) in
-                ("\n  enQ (q, " ^ (string_of_int_list l) ^ ")" ^ s, ans, out)
-            | DEQ l ->
-                let (l', q') = deQ q in
-                if l' = l then
-                  let (s, ans, out) = string_of_seqs seqs' q' in
-                  ("\n  " ^ correct_symbol ^ " deQ (q) = " ^ (string_of_int_list l) ^ s, ans, out)
-                else ("\n  " ^ wrong_symbol ^ " deQ (q)", string_of_int_list l, string_of_int_list l')
-            | DEQ_EMPTYQ ->
-                let res =
-                  try Some (deQ q)
-                  with EMPTY_Q -> None
-                in match res with
-                | Some (l', q') -> ("\n  " ^ wrong_symbol ^ " deQ (q)", "Exception EMPTY_Q", string_of_int_list l')
-                | None ->
-                    let (s, ans, out) = string_of_seqs seqs' q
-                    in ("\n  " ^ correct_symbol ^ " deQ (q) = Exception EMPTY_Q" ^ s, ans, out)
-
-      in
-      match tc with
-      | SEQ seqs -> string_of_seqs seqs emptyQ
-
     let testcases =
       [ SEQ
         [ ENQ [1;2;3]
@@ -145,6 +95,56 @@ module TestEx6: TestEx =
         ; DEQ_EMPTYQ
         ]
       ]
+
+    let runner tc =
+      let rec runner_ l q =
+        match l with
+        | [] -> true
+        | (h::tc') ->
+            match h with
+            | ENQ l -> runner_ tc' (enQ (q, l))
+            | DEQ l ->
+                let (l', q') = deQ q in
+                if l' = l then runner_ tc' q'
+                else false
+            | DEQ_EMPTYQ ->
+                let res =
+                  try Some (deQ q)
+                  with EMPTY_Q -> None
+                in res = None
+      in
+      match tc with
+      | SEQ l -> runner_ l emptyQ
+
+    let string_of_tc tc =
+      let rec string_of_seqs seqs q =
+        match seqs with
+        | [] -> ("", "", "")
+        | (h::seqs') ->
+            let string_of_int_list = string_of_list string_of_int in
+            match h with
+            | ENQ l ->
+                let (s, ans, out) = string_of_seqs seqs' (enQ (q, l)) in
+                ("\n  enQ (q, " ^ (string_of_int_list l) ^ ")" ^ s, ans, out)
+            | DEQ l ->
+                let (l', q') = deQ q in
+                if l' = l then
+                  let (s, ans, out) = string_of_seqs seqs' q' in
+                  ("\n  " ^ correct_symbol ^ " deQ (q) = " ^ (string_of_int_list l) ^ s, ans, out)
+                else ("\n  " ^ wrong_symbol ^ " deQ (q)", string_of_int_list l, string_of_int_list l')
+            | DEQ_EMPTYQ ->
+                let res =
+                  try Some (deQ q)
+                  with EMPTY_Q -> None
+                in match res with
+                | Some (l', q') -> ("\n  " ^ wrong_symbol ^ " deQ (q)", "Exception EMPTY_Q", string_of_int_list l')
+                | None ->
+                    let (s, ans, out) = string_of_seqs seqs' q
+                    in ("\n  " ^ correct_symbol ^ " deQ (q) = Exception EMPTY_Q" ^ s, ans, out)
+
+      in
+      match tc with
+      | SEQ seqs -> string_of_seqs seqs emptyQ
   end
 
 open TestEx6

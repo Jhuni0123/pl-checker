@@ -22,6 +22,28 @@ module TestEx7 =
       | EVAL of expr * int
       | ERROR of expr
 
+    let testcases =
+      [ EVAL (NUM 1, 1)
+      ; EVAL (NUM (-10), -10)
+      ; EVAL (PLUS (NUM 123, NUM 456), 579)
+      ; EVAL (MINUS (NUM 456, NUM 123), 333)
+      ; EVAL (MULT (NUM 25, NUM 16), 400)
+      ; EVAL (DIVIDE (NUM (-3000), NUM 22), -136)
+      ; EVAL (MAX [], 0)
+      ; EVAL (MAX [NUM (-98765)], -98765)
+      ; EVAL (MAX [NUM 10; NUM 20; NUM 30], 30)
+      ; EVAL (MAX [NUM 30; NUM 20; NUM 10], 30)
+      ; EVAL (MAX [NUM 1; NUM 1; NUM 2; NUM 1; NUM 1], 2)
+      ; EVAL (LET ("x", NUM 15, VAR "x"), 15)
+      ; EVAL (LET ("x", NUM 17, LET ("y", VAR "x", LET ("x", NUM 30, VAR "y"))), 17)
+      ; EVAL (LET ("x", NUM 20, LET ("y", MULT (VAR "x", VAR "x"), LET ("x", VAR "x", PLUS (VAR "x", VAR "y")))), 420)
+      ; EVAL (LET ("x", NUM 30, LET ("y", VAR "x", LET ("x", VAR "y", LET ("y", VAR "x", VAR "y")))), 30)
+      ; EVAL (LET ("var", NUM 1000, LET ("let", PLUS (VAR "var", VAR "var"), MULT (VAR "let", VAR "let"))), 4000000)
+      ; ERROR (VAR "x")
+      ; ERROR (LET ("x", VAR "x", VAR "x"))
+      ; ERROR (LET ("x", NUM 10, LET ("y", VAR "x", VAR "z")))
+      ]
+
     let runner tc =
       match tc with
       | EVAL (e, ans) -> eval(emptyEnv, e) = eval(emptyEnv, NUM ans)
@@ -62,28 +84,6 @@ module TestEx7 =
       match res with
       | None -> print_string "exception Error FreeVariable"
       | Some v -> print_value v
-
-    let testcases =
-      [ EVAL (NUM 1, 1)
-      ; EVAL (NUM (-10), -10)
-      ; EVAL (PLUS (NUM 123, NUM 456), 579)
-      ; EVAL (MINUS (NUM 456, NUM 123), 333)
-      ; EVAL (MULT (NUM 25, NUM 16), 400)
-      ; EVAL (DIVIDE (NUM (-3000), NUM 22), -136)
-      ; EVAL (MAX [], 0)
-      ; EVAL (MAX [NUM (-98765)], -98765)
-      ; EVAL (MAX [NUM 10; NUM 20; NUM 30], 30)
-      ; EVAL (MAX [NUM 30; NUM 20; NUM 10], 30)
-      ; EVAL (MAX [NUM 1; NUM 1; NUM 2; NUM 1; NUM 1], 2)
-      ; EVAL (LET ("x", NUM 15, VAR "x"), 15)
-      ; EVAL (LET ("x", NUM 17, LET ("y", VAR "x", LET ("x", NUM 30, VAR "y"))), 17)
-      ; EVAL (LET ("x", NUM 20, LET ("y", MULT (VAR "x", VAR "x"), LET ("x", VAR "x", PLUS (VAR "x", VAR "y")))), 420)
-      ; EVAL (LET ("x", NUM 30, LET ("y", VAR "x", LET ("x", VAR "y", LET ("y", VAR "x", VAR "y")))), 30)
-      ; EVAL (LET ("var", NUM 1000, LET ("let", PLUS (VAR "var", VAR "var"), MULT (VAR "let", VAR "let"))), 4000000)
-      ; ERROR (VAR "x")
-      ; ERROR (LET ("x", VAR "x", VAR "x"))
-      ; ERROR (LET ("x", NUM 10, LET ("y", VAR "x", VAR "z")))
-      ]
   end
 
 

@@ -18,20 +18,6 @@ module TestEx4: TestEx =
       | ADD of int * int * int
       | MUL of int * int * int
 
-    let runner (tc: testcase): bool =
-      match tc with
-      | ADD (n1, n2, ans) -> natadd ((nat_of_int n1), (nat_of_int n2)) = (nat_of_int ans)
-      | MUL (n1, n2, ans) -> natmul ((nat_of_int n1), (nat_of_int n2)) = (nat_of_int ans)
-
-    let string_of_tc (tc: testcase): string * string * string =
-      match tc with
-      | ADD (n1, n2, ans) ->
-          let output = int_of_nat (natadd ((nat_of_int n1), (nat_of_int n2))) in
-          (Printf.sprintf "natadd(%d, %d)" n1 n2, string_of_int ans, string_of_int output)
-      | MUL (n1, n2, ans) ->
-          let output = int_of_nat (natmul ((nat_of_int n1), (nat_of_int n2))) in
-          (Printf.sprintf "natmul(%d, %d)" n1 n2, string_of_int ans, string_of_int output)
-
     let testcases: testcase list =
       [ ADD (0,0,0)
       ; ADD (1,1,2)
@@ -45,6 +31,20 @@ module TestEx4: TestEx =
       ; MUL (17,31,527)
       ; MUL (2,16,32)
       ]
+
+    let runner (tc: testcase): bool =
+      match tc with
+      | ADD (n1, n2, ans) -> natadd ((nat_of_int n1), (nat_of_int n2)) = (nat_of_int ans)
+      | MUL (n1, n2, ans) -> natmul ((nat_of_int n1), (nat_of_int n2)) = (nat_of_int ans)
+
+    let string_of_tc (tc: testcase): string * string * string =
+      match tc with
+      | ADD (n1, n2, ans) ->
+          let output = int_of_nat (natadd ((nat_of_int n1), (nat_of_int n2))) in
+          (Printf.sprintf "natadd(%d, %d)" n1 n2, string_of_int ans, string_of_int output)
+      | MUL (n1, n2, ans) ->
+          let output = int_of_nat (natmul ((nat_of_int n1), (nat_of_int n2))) in
+          (Printf.sprintf "natmul(%d, %d)" n1 n2, string_of_int ans, string_of_int output)
   end
 
 open TestEx4

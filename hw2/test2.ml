@@ -2,29 +2,10 @@
 open Ex2
 open Testlib
 
-let crazy2_of_string str =
-  let rec crazy2_of_char_list l =
-    match l with
-    | [] -> NIL
-    | h::t ->
-        if h = '+' then ONE (crazy2_of_char_list t)
-        else if h = '-' then MONE (crazy2_of_char_list t)
-        else if h = '0' then ZERO (crazy2_of_char_list t)
-        else failwith "only '+-0' are allowed"
-  in crazy2_of_char_list (List.rev (char_list_of_string str))
-
 module TestEx2: TestEx =
   struct
     type testcase =
       | CRAZY2 of string * int
-
-    let runner tc =
-      match tc with
-      | CRAZY2 (str, ans) -> crazy2val (crazy2_of_string str) = ans
-
-    let string_of_tc tc =
-      match tc with
-      | CRAZY2 (str, ans) -> ("crazy2val " ^ str, string_of_int ans, string_of_int (crazy2val (crazy2_of_string str)))
 
     let testcases =
       [ CRAZY2 ("0", 0)
@@ -55,6 +36,25 @@ module TestEx2: TestEx =
       ; CRAZY2 ("++++-++++0++++++++++", 1048031)
       ; CRAZY2 ("---------+0---------", -1046527)
       ]
+
+    let crazy2_of_string str =
+      let rec crazy2_of_char_list l =
+        match l with
+        | [] -> NIL
+        | h::t ->
+            if h = '+' then ONE (crazy2_of_char_list t)
+            else if h = '-' then MONE (crazy2_of_char_list t)
+            else if h = '0' then ZERO (crazy2_of_char_list t)
+            else failwith "only '+-0' are allowed"
+      in crazy2_of_char_list (List.rev (char_list_of_string str))
+
+    let runner tc =
+      match tc with
+      | CRAZY2 (str, ans) -> crazy2val (crazy2_of_string str) = ans
+
+    let string_of_tc tc =
+      match tc with
+      | CRAZY2 (str, ans) -> ("crazy2val " ^ str, string_of_int ans, string_of_int (crazy2val (crazy2_of_string str)))
   end
 
 open TestEx2
