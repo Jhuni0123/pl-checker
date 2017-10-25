@@ -4,8 +4,6 @@ open Testlib
 
 module TestEx1: TestEx =
   struct
-    let exnum = 2
-
     type testcase =
       | SHOP of require list * (id * gift list) list
 
@@ -346,4 +344,4 @@ module TestEx1: TestEx =
   end
 
 open TestEx1
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

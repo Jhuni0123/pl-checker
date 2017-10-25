@@ -14,8 +14,6 @@ let rec int_of_nat (n: nat): int =
 
 module TestEx4: TestEx =
   struct
-    let exnum = 4
-
     type testcase =
       | ADD of int * int * int
       | MUL of int * int * int
@@ -50,4 +48,4 @@ module TestEx4: TestEx =
   end
 
 open TestEx4
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

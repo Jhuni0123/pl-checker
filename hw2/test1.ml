@@ -23,8 +23,6 @@ let rec string_of_fomula f =
 
 module TestEx1: TestEx =
   struct
-    let exnum = 1
-
     type testcase =
       | EVAL of formula * bool
 
@@ -75,4 +73,4 @@ module TestEx1: TestEx =
   end
 
 open TestEx1
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

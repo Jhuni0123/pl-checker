@@ -4,8 +4,6 @@ open Testlib
 
 module TestEx1: TestEx =
   struct
-    let exnum = 1
-
     type testcase =
       | MERGE of int list * int list * int list
 
@@ -36,4 +34,4 @@ module TestEx1: TestEx =
   end
 
 open TestEx1
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

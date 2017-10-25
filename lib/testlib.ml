@@ -22,8 +22,7 @@ let test_testcase2 num tc runner result_of_tc print_res =
     let _ = print_res out in
     print_string "\n"
 
-let test_exercise exnum tcs runner string_of_tc =
-  (*let _ = printf "# Test Exercise %d\n" exnum in*)
+let test_exercise tcs runner string_of_tc =
   let rec test_exercise_ tcnum tcs runner =
     match tcs with
     | [] -> ()
@@ -32,8 +31,7 @@ let test_exercise exnum tcs runner string_of_tc =
         in test_exercise_ (tcnum+1) tcs' runner
   in test_exercise_ 1 tcs runner
 
-let test_exercise2 exnum tcs runner result_of_tc print_res =
-  (*let _ = printf "# Test Exercise %d\n" exnum in*)
+let test_exercise2 tcs runner result_of_tc print_res =
   let rec test_exercise_ tcnum tcs runner =
     match tcs with
     | [] -> ()
@@ -42,29 +40,27 @@ let test_exercise2 exnum tcs runner result_of_tc print_res =
         in test_exercise_ (tcnum+1) tcs' runner
   in test_exercise_ 1 tcs runner
 
-let summary_exercise exnum tcs runner =
-  (*let _ = printf "# Test Exercise %d\n" exnum in*)
+let summary_exercise tcs runner =
   let total = List.length tcs in
   let passed = List.length (List.filter runner tcs) in
   printf "%s Passed %d/%d Cases\n" (if passed = total then correct_symbol else wrong_symbol) passed total
 
-let wrapper a1 a2 a3 a4 =
+let wrapper a1 a2 a3 =
   if Array.length Sys.argv = 1 then
-    test_exercise a1 a2 a3 a4
+    test_exercise a1 a2 a3
   else
-    summary_exercise a1 a2 a3
+    summary_exercise a1 a2
 
-let wrapper2 a1 a2 a3 a4 a5 =
+let wrapper2 a1 a2 a3 a4 =
   if Array.length Sys.argv = 1 then
-    test_exercise2 a1 a2 a3 a4 a5
+    test_exercise2 a1 a2 a3 a4
   else
-    summary_exercise a1 a2 a3
+    summary_exercise a1 a2
 
 module type TestEx =
   sig
     type testcase
 
-    val exnum: int
     val testcases: testcase list
     val runner: testcase -> bool
     (* str_of_input: string * string_of_ans: string * string_of_output: string *)

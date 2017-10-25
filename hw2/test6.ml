@@ -8,8 +8,6 @@ module ValidIntListQ = (IntListQ: Queue)
 
 module TestEx6: TestEx =
   struct
-    let exnum = 6
-
     type testcase =
       | SEQ of seq list
     and seq =
@@ -150,4 +148,4 @@ module TestEx6: TestEx =
   end
 
 open TestEx6
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

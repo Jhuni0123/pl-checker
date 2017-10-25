@@ -4,8 +4,6 @@ open Testlib
 
 module TestEx2: TestEx =
   struct
-    let exnum = 2
-
     type testcase =
       | SIGMA of int * int * (int -> int) * string * int
 
@@ -33,4 +31,4 @@ module TestEx2: TestEx =
   end
 
 open TestEx2
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

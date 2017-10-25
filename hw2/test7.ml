@@ -18,8 +18,6 @@ let rec string_of_expr e =
 
 module TestEx7 =
   struct
-    let exnum = 7
-
     type testcase =
       | EVAL of expr * int
       | ERROR of expr
@@ -90,4 +88,4 @@ module TestEx7 =
 
 
 open TestEx7
-let _ = wrapper2 exnum testcases runner result_of_tc print_res
+let _ = wrapper2 testcases runner result_of_tc print_res

@@ -77,8 +77,6 @@ let string_of_location loc =
 
 module TestEx5: TestEx =
   struct
-    let exnum = 5
-
     type testcase =
       | TREE of tree * seq list
     and seq =
@@ -216,4 +214,4 @@ module TestEx5: TestEx =
   end
 
 open TestEx5
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

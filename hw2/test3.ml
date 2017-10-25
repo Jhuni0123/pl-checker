@@ -23,8 +23,6 @@ let magic c =
 
 module TestEx3: TestEx =
   struct
-    let exnum = 3
-
     type testcase =
       | ADD of string * string * int
 
@@ -79,4 +77,4 @@ module TestEx3: TestEx =
   end
 
 open TestEx3
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

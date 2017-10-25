@@ -10,8 +10,6 @@ let rec string_of_metro m =
 
 module TestEx4: TestEx =
   struct
-    let exnum = 4
-
     type testcase =
       | CHECK of metro * bool
 
@@ -49,4 +47,4 @@ module TestEx4: TestEx =
   end
 
 open TestEx4
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc

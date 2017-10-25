@@ -15,8 +15,6 @@ let crazy2_of_string str =
 
 module TestEx2: TestEx =
   struct
-    let exnum = 2
-
     type testcase =
       | CRAZY2 of string * int
 
@@ -60,4 +58,4 @@ module TestEx2: TestEx =
   end
 
 open TestEx2
-let _ = wrapper exnum testcases runner string_of_tc
+let _ = wrapper testcases runner string_of_tc
