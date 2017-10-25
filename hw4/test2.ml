@@ -2,7 +2,7 @@
 open Ex2
 open Testlib
 
-module TestEx1: TestEx =
+module TestEx2: TestEx =
   struct
     type testcase =
       | SHOP of require list * (id * gift list) list
@@ -343,5 +343,5 @@ module TestEx1: TestEx =
 
   end
 
-open TestEx1
+open TestEx2
 let _ = wrapper testcases runner string_of_tc
