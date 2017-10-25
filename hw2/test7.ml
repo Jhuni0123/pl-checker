@@ -39,6 +39,7 @@ module TestEx7 =
       ; EVAL (LET ("x", NUM 20, LET ("y", MULT (VAR "x", VAR "x"), LET ("x", VAR "x", PLUS (VAR "x", VAR "y")))), 420)
       ; EVAL (LET ("x", NUM 30, LET ("y", VAR "x", LET ("x", VAR "y", LET ("y", VAR "x", VAR "y")))), 30)
       ; EVAL (LET ("var", NUM 1000, LET ("let", PLUS (VAR "var", VAR "var"), MULT (VAR "let", VAR "let"))), 4000000)
+      ; EVAL (LET ("x", NUM 1000, PLUS (LET ("x", NUM 1234, VAR "x"), PLUS (VAR "x", LET ("x", NUM 1357, VAR "x")))), 3591)
       ; ERROR (VAR "x")
       ; ERROR (LET ("x", VAR "x", VAR "x"))
       ; ERROR (LET ("x", NUM 10, LET ("y", VAR "x", VAR "z")))
