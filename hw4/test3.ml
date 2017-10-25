@@ -17,7 +17,7 @@ module TestEx3: TestEx =
       ; GETREADY (Branch (Guide ("x", End (NameBox "x")), Guide ("y", End (NameBox "y"))), [Bar; Node (Bar, Bar)])
       ; GETREADY (Branch (End (NameBox "x"), End StarBox), [Bar; Node (Bar, Bar)])
       ; GETREADY (Branch (Guide ("x", End (NameBox "x")), End StarBox), [Bar])
-      ; GETREADY (Guide ("x", Branch (End (NameBox "x"), End StarBox)), [Node (Bar, Bar)])
+      ; GETREADY (Guide ("x", Branch (End (NameBox "x"), End StarBox)), [Bar; Node (Bar, Bar)])
       ; GETREADY (Branch (Guide ("y", End (NameBox "y")), End (NameBox "x")), [Bar])
       ; GETREADY (Branch (Guide ("y", End (NameBox "y")), Guide ("x", Guide ("x", End (NameBox "x")))), [Bar; Node (Bar, Node (Bar, Bar))])
       ; GETREADY (Guide ("y", Guide ("x", Branch (End (NameBox "x"), End (NameBox "y")))), [Bar; Node (Bar, Bar)])
