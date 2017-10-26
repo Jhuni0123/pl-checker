@@ -286,10 +286,10 @@ module TestEx2: TestEx =
         )
       ; SHOP
         ( [ (A, [Items [3;1;2]])
-          ; (B, [Same A])
           ; (C, [Same B])
-          ; (D, [Same C])
+          ; (B, [Same A])
           ; (E, [Same D])
+          ; (D, [Same C])
           ]
         , [ (A, [1;2;3])
           ; (B, [1;2;3])
