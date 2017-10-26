@@ -21,6 +21,11 @@ module TestEx3: TestEx =
       ; GETREADY (Branch (Guide ("y", End (NameBox "y")), End (NameBox "x")), [Bar])
       ; GETREADY (Branch (Guide ("y", End (NameBox "y")), Guide ("x", Guide ("x", End (NameBox "x")))), [Bar; Node (Bar, Node (Bar, Bar))])
       ; GETREADY (Guide ("y", Guide ("x", Branch (End (NameBox "x"), End (NameBox "y")))), [Bar; Node (Bar, Bar)])
+      ; FAIL (Branch (End StarBox, End StarBox))
+      ; FAIL (Branch (End (NameBox "x"), End (NameBox "x")))
+      ; GETREADY (Branch (Guide ("x", End (NameBox "x")), End (NameBox "x")), [Bar])
+      ; GETREADY (Branch (Branch (End (NameBox "x"), End StarBox), Branch (End (NameBox "y"), End (NameBox "x"))), [Bar; Node (Bar, Node (Bar, Bar)); Node (Node (Bar, Node (Bar, Bar)), Bar)])
+      ; GETREADY (Branch (Branch (End (NameBox "x"), End (NameBox "y")), End (NameBox "y")), [Bar; Node (Bar, Node (Bar, Bar))])
       ]
 
     let string_of_treasure t =
@@ -42,17 +47,7 @@ module TestEx3: TestEx =
     let string_of_key_list =
       string_of_list string_of_key
 
-    let rec compare_key k1 k2 =
-      match (k1, k2) with
-      | (k1, k2) when k1 = k2 -> 0
-      | (Bar, k) -> -1
-      | (k, Bar) -> 1
-      | (Node (k11, k12), Node (k21, k22)) ->
-          let fstc = compare k11 k21 in
-          if fstc = 0 then compare k12 k22
-          else fstc
-
-    let sort = List.sort compare_key
+    let sort = List.sort compare
 
     let runner (tc: testcase): bool =
       match tc with
