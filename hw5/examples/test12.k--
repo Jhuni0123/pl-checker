@@ -1,0 +1,25 @@
+(* test case 12 : closure *)
+
+let sum := 0 in
+let proc add (n) =
+  if n < 0 then sum
+  else
+    ( sum := sum + n;
+      add (n-1)
+    )
+in
+let x := 100 in
+( write sum;
+  write add (x);
+  write sum;
+  write add (x);
+  write sum
+)
+
+(* output :
+0
+5050
+5050
+10100
+10100
+*)

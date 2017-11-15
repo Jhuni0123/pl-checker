@@ -1,0 +1,8 @@
+(* test case 17 : K.IF *)
+
+(if true then write(1)
+else write(0))
+;
+if false then write(0)
+else write(1)
+

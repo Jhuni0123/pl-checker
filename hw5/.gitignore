@@ -1,0 +1,9 @@
+translate.ml
+sm5.ml
+run
+parser.ml
+parser.mli
+lexer.ml
+*.out
+*.k--
+!examples/*.k--

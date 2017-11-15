@@ -1,0 +1,9 @@
+(* test case 20 : K.LETV *)
+let x := 888 in
+write( let x := 20 in (
+    if 123 = (
+        let x := 10 in x * 11 + 13
+    ) then write (100)
+    else write (200)
+));
+write (x)

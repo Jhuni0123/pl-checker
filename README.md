@@ -9,9 +9,10 @@ unix 기반 환경을 필요로 합니다
 git clone https://github.com/Jhuni0123/pl-checker.git
 cd pl-checker
 cd hw<num>
-./check # please read README.md
+# please read README.md
+./check
 ```
-[hw1](hw1) | [hw2](hw2) | [hw3](hw3) | [hw4](hw4)
+[hw1](hw1) | [hw2](hw2) | [hw3](hw3) | [hw4](hw4) | [hw5](hw5)
 
 # How to update
 **테스트케이스가 종종 업데이트 됩니다. 주기적으로 업데이트 해주세요!** <br>
@@ -22,7 +23,8 @@ git pull --rebase origin master
 ```
 
 # Status
-- HW 5~ : TBD
+- HW 5-2 : TBD
+- HW 6~ : TBD
 
 # Thanks to
 - [kipa00](https://github.com/kipa00)
