@@ -1,9 +1,10 @@
 # HW5: SM5 (Stack Machine 5)
 ## How to use
-### 5-1
 1. 구현한 `translate.ml`을 복사하거나 뼈대코드 `translate.ml.orig`을 `translate.ml`로 바꾼 후 구현합니다.
-2. `./check` 명령어를 통해 테스트케이스를 실행합니다.
+2. 구현한 `sm5.ml`을 복사하거나 뼈대코드 `sm5.ml.orig`을 `sm5.ml`로 바꾼 후 구현합니다.
+3. `./check` 명령어를 통해 테스트케이스를 실행합니다.
 
+### 5-1
 - `examples/test<num>.k--` : 테스트케이스
 - `examples/test<num>.ans` : 정답
 - `examples/test<num>.out` : 출력
