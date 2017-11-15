@@ -23,7 +23,7 @@ for TC in "${TESTCASES[@]}"
 do
     TFILE="${TESTDIR}/test${TC}"
     printf "Test %s..." "${TC}"
-    COMM="./run -k ${TFILE}.k-- > ${TFILE}.out"
+    COMM="./run ${TFILE}.k-- > ${TFILE}.out"
     if [ -f "${TFILE}.in" ]
     then
         COMM="${COMM} < ${TFILE}.in"
