@@ -1,0 +1,9 @@
+(* test case 18 : K.WHILE *)
+
+while false do write(100);
+( let x := 1 in
+    ( while (x < 100) do x := x + x );
+    write x
+);
+if unit = (while false do write(1)) then write(1)
+else write(0)

@@ -1,0 +1,8 @@
+(* test case 14 : while *)
+
+let s := 0 in
+let x := 0 in
+while (10 < (read x)) do (
+    s := s + x;
+    write s
+)

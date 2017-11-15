@@ -1,0 +1,8 @@
+(* test case 24 : K.READ *)
+
+let x := 1 in
+(read x) + 1;
+(read x) + 2;
+write (read x);
+write (read x);
+write (x)
