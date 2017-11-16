@@ -25,10 +25,14 @@ do
     TFILE="${TESTDIR}/test${TC}"
     printf "Test %s..." "${TC}"
     COMM="./run ${TFILE}.k-- > ${TFILE}.out"
+    COMMK="./run -k ${TFILE}.k-- > ${TFILE}.ans"
     if [ -f "${TFILE}.in" ]
     then
         COMM="${COMM} < ${TFILE}.in"
+        COMMK="${COMMK} < ${TFILE}.in"
     fi
+
+    eval "${COMMK}"
 
     if eval "${COMM}"
     then
@@ -46,10 +50,14 @@ do
     TFILE="${TESTDIR}/testgc${TC}"
     printf "Test %s..." "${TC}"
     COMM="./run -gc ${TFILE}.k-- > ${TFILE}.out"
+    COMMK="./run -k ${TFILE}.k-- > ${TFILE}.ans"
     if [ -f "${TFILE}.in" ]
     then
         COMM="${COMM} < ${TFILE}.in"
+        COMMK="${COMMK} < ${TFILE}.in"
     fi
+
+    eval "${COMMK}"
 
     if eval "${COMM}"
     then

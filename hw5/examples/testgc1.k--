@@ -4,4 +4,4 @@ let proc fib (x) =
     if x < 2 then x
     else fib(x-1) + fib(x-2)
 in
-write(fib(20))
+write(fib(16))
