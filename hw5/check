@@ -29,8 +29,11 @@ do
         COMM="${COMM} < ${TFILE}.in"
     fi
 
-    eval "${COMM}"
-
-    eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
-    result $?
+    if eval "${COMM}"
+    then
+        eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
+        result $?
+    else
+        echo "${WRONG}"
+    fi
 done
