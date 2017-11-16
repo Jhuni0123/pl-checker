@@ -1,0 +1,7 @@
+let i := 0 in
+let proc fib (x) =
+    i := i + 1;
+    if x < 2 then x
+    else fib(x-1) + fib(x-2)
+in
+write(fib(20))

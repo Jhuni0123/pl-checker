@@ -10,7 +10,9 @@
 - `examples/test<num>.out` : 출력
 
 ### 5-2
-TBD
+- `examples/testgc<num>.k--` : 테스트케이스
+- `examples/testgc<num>.ans` : 정답
+- `examples/testgc<num>.out` : 출력
 
 ---
 

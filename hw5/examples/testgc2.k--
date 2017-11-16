@@ -1,0 +1,300 @@
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x);
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+(let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+(let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+let x := 0 in
+(let x := 1 in
+let x := 2 in
+let x := 0 in
+let x := 1 in
+let x := 2 in
+write x);
+write x);
+write x);
+write x);
+write x)

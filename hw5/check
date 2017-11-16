@@ -1,12 +1,13 @@
 #!/bin/bash
 
 TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25)
+GC_TESTCASES=(1 2)
 TESTDIR="examples"
 WRONG="$(tput setaf 1)✗$(tput sgr0)"
 CORRECT="$(tput setaf 2)✓$(tput sgr0)"
 
 function result {
-    if [ "$1" == 1 ]
+    if [ 0 -lt "$1"  ]
     then
         echo "${WRONG}"
     else
@@ -17,13 +18,34 @@ function result {
 echo '# Compiling...'
 make
 
-echo '# Testing sm5 translator'
+echo '# Testing SM5 translator'
 
 for TC in "${TESTCASES[@]}"
 do
     TFILE="${TESTDIR}/test${TC}"
     printf "Test %s..." "${TC}"
     COMM="./run ${TFILE}.k-- > ${TFILE}.out"
+    if [ -f "${TFILE}.in" ]
+    then
+        COMM="${COMM} < ${TFILE}.in"
+    fi
+
+    if eval "${COMM}"
+    then
+        eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
+        result $?
+    else
+        echo "${WRONG}"
+    fi
+done
+
+echo '# Testing SM5 Limited: gc'
+
+for TC in "${GC_TESTCASES[@]}"
+do
+    TFILE="${TESTDIR}/testgc${TC}"
+    printf "Test %s..." "${TC}"
+    COMM="./run -gc ${TFILE}.k-- > ${TFILE}.out"
     if [ -f "${TFILE}.in" ]
     then
         COMM="${COMM} < ${TFILE}.in"
