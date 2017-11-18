@@ -1,7 +1,10 @@
 let i := 0 in
 let proc fib (x) =
+    let tmp := 0 in
+    let tmp2 := 0 in
+    let tmp3 := 0 in
     i := i + 1;
     if x < 2 then x
-    else fib(x-1) + fib(x-2)
+    else fib(x-1) + fib(x-2) + tmp + tmp2 + tmp3
 in
-write(fib(16))
+write(fib(15))
