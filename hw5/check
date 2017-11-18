@@ -5,6 +5,8 @@ GC_TESTCASES=(1 2)
 TESTDIR="examples"
 WRONG="$(tput setaf 1)✗$(tput sgr0)"
 CORRECT="$(tput setaf 2)✓$(tput sgr0)"
+WARNING="$(tput setaf 3)⚠$(tput sgr0)"
+
 
 function result {
     if [ 0 -lt "$1"  ]
@@ -44,6 +46,7 @@ do
 done
 
 echo '# Testing SM5 Limited: gc'
+echo "${WARNING} These testcases are weak!! Please test the other testcases."
 
 for TC in "${GC_TESTCASES[@]}"
 do
