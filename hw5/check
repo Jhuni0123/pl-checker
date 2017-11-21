@@ -70,3 +70,5 @@ do
         echo "${WRONG}"
     fi
 done
+
+ocamlc sm5.ml gc_test.ml && ./a.out
