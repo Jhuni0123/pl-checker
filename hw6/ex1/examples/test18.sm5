@@ -1,0 +1,152 @@
+[push (#whlie_var,
+  [bind @while_func;
+  push false;
+  jtr (
+    [push 100;
+    malloc;
+    bind #write_var;
+    push #write_var;
+    store;
+    push #write_var;
+    load;
+    put;
+    push #write_var;
+    load;
+    unbind;
+    pop;
+    pop;
+    push @while_func;
+    push @while_func;
+    push unit;
+    malloc;
+    call],
+    [push unit]);
+  unbind;
+  pop]
+  );
+bind @while_func;
+push @while_func;
+push @while_func;
+push unit;
+malloc;
+call;
+unbind;
+pop;
+pop;
+push 1;
+malloc;
+bind x;
+push x;
+store;
+push (#whlie_var,
+  [bind @while_func;
+  push x;
+  load;
+  push 100;
+  less;
+  jtr (
+    [push x;
+    load;
+    push x;
+    load;
+    add;
+    push x;
+    store;
+    push x;
+    load;
+    pop;
+    push @while_func;
+    push @while_func;
+    push unit;
+    malloc;
+    call],
+    [push unit]);
+  unbind;
+  pop]
+  );
+bind @while_func;
+push @while_func;
+push @while_func;
+push unit;
+malloc;
+call;
+unbind;
+pop;
+pop;
+push x;
+load;
+malloc;
+bind #write_var;
+push #write_var;
+store;
+push #write_var;
+load;
+put;
+push #write_var;
+load;
+unbind;
+pop;
+unbind;
+pop;
+pop;
+push unit;
+push (#whlie_var,
+  [bind @while_func;
+  push false;
+  jtr (
+    [push 1;
+    malloc;
+    bind #write_var;
+    push #write_var;
+    store;
+    push #write_var;
+    load;
+    put;
+    push #write_var;
+    load;
+    unbind;
+    pop;
+    pop;
+    push @while_func;
+    push @while_func;
+    push unit;
+    malloc;
+    call],
+    [push unit]);
+  unbind;
+  pop]
+  );
+bind @while_func;
+push @while_func;
+push @while_func;
+push unit;
+malloc;
+call;
+unbind;
+pop;
+eq;
+jtr (
+  [push 1;
+  malloc;
+  bind #write_var;
+  push #write_var;
+  store;
+  push #write_var;
+  load;
+  put;
+  push #write_var;
+  load;
+  unbind;
+  pop],
+  [push 0;
+  malloc;
+  bind #write_var;
+  push #write_var;
+  store;
+  push #write_var;
+  load;
+  put;
+  push #write_var;
+  load;
+  unbind;
+  pop])]

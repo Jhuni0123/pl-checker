@@ -1,0 +1,16 @@
+(* test case 13 : variable name scope *)
+
+let n := 15 in
+( let proc fib (n) =
+    if n < 2 then n
+    else fib(n-1) + fib(n-2)
+  in
+  ( let n := 10 in
+    write fib(n)
+  );
+  write fib(n)
+)
+(* output :
+55
+610
+*)

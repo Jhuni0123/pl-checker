@@ -1,0 +1,9 @@
+(* test case 9 *)
+
+let x := 1 in
+let y := 0 in
+
+read y;
+write x + y
+
+(* Output : Reads in n and output n+1 *)

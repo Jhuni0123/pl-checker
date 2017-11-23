@@ -1,0 +1,65 @@
+[push 0;
+malloc;
+bind s;
+push s;
+store;
+push 0;
+malloc;
+bind x;
+push x;
+store;
+push (#whlie_var,
+  [bind @while_func;
+  push 10;
+  get;
+  push x;
+  store;
+  push x;
+  load;
+  less;
+  jtr (
+    [push s;
+    load;
+    push x;
+    load;
+    add;
+    push s;
+    store;
+    push s;
+    load;
+    pop;
+    push s;
+    load;
+    malloc;
+    bind #write_var;
+    push #write_var;
+    store;
+    push #write_var;
+    load;
+    put;
+    push #write_var;
+    load;
+    unbind;
+    pop;
+    pop;
+    push @while_func;
+    push @while_func;
+    push unit;
+    malloc;
+    call],
+    [push unit]);
+  unbind;
+  pop]
+  );
+bind @while_func;
+push @while_func;
+push @while_func;
+push unit;
+malloc;
+call;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop]

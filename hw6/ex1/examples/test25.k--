@@ -1,0 +1,5 @@
+(* test case 25 : K.WRITE *)
+
+write(write(write(write(2))));
+let x := 20 in
+write (write x + (read x)) + 1000

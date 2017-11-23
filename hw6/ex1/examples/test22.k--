@@ -1,0 +1,7 @@
+(* test case 22 : K.CALLV *)
+
+let proc fib (x) =
+    if x < 2 then x
+    else fib(x-1) + fib(x-2)
+in
+write fib(1);write fib(3);write fib(5);write fib(7); write fib(9)

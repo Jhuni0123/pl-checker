@@ -1,0 +1,15 @@
+(* test case 23 : K.CALLR *)
+
+let proc mul2 (x) =
+    x := x + x
+in
+let proc shift3 (n) =
+    let i := 0 in
+    (for i := 1 to 3 do n := mul2(n));n
+in
+let x := 3 in
+write( shift3(x) );
+write( shift3<x> );
+write( shift3<x> );
+write( shift3(shift3<x>) );
+write(x)

@@ -1,0 +1,14 @@
+(* test case 19 : K.FOR *)
+let i := 0 in
+(for i := 10 to 5 do write(1));write(i);123;
+write(99999);
+( if unit = (for i:= 1 to 3 do write(i)) then write(i+100)
+  else write(i+200)
+);
+write(99999);
+let x := 0 in
+for i := (write 100) to (write 105) do x := x + (i-100);
+write(x);
+write(99999);
+for i := 0 to 5 do write (i := i+1);
+write (i)

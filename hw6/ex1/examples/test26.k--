@@ -1,0 +1,10 @@
+(* test case 26 : nested loop *)
+
+let i := 0 in
+for i := 1 to 3 do
+(for i := 1 to 3 do
+ let x := i in
+ (while (0 < x) do
+  (write(x); x := x - 1)
+ )
+)

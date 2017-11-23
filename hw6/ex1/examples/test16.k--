@@ -1,0 +1,13 @@
+(* test case 16 : K.SEQ *)
+
+1;
+write( 2; 3);
+1234;
+write(2;3;4;5);
+write(10 + 1);
+write(100;write(10));
+let x := 0 in
+let proc f(x) =
+    x := x + 1;x
+in
+write(f(f<x>))
