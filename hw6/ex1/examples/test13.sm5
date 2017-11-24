@@ -1,4 +1,4 @@
-[push 15;
+[push 10;
 malloc;
 bind n;
 push n;
@@ -33,7 +33,7 @@ push (n,
   pop]
   );
 bind fib;
-push 10;
+push 5;
 malloc;
 bind n;
 push n;

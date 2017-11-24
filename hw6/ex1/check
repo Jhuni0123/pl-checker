@@ -1,9 +1,11 @@
 #!/bin/bash
 
 TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26)
+HARDTESTCASES=(1)
 TESTDIR="examples"
 WRONG="$(tput setaf 1)✗$(tput sgr0)"
 CORRECT="$(tput setaf 2)✓$(tput sgr0)"
+WARNING="$(tput setaf 3)⚠$(tput sgr0)"
 
 
 function result {
@@ -17,12 +19,38 @@ function result {
 
 echo '# Compiling...'
 make
+echo ''
 
-echo '# Testing Rozetta: Sm5 -> Sonata'
+echo '# Testing Rozetta: K-- -> Sm5 -> Sonata'
 
 for TC in "${TESTCASES[@]}"
 do
     TFILE="${TESTDIR}/test${TC}"
+    printf "Test %s..." "${TC}"
+    COMM="./run ${TFILE}.sm5 > ${TFILE}.out"
+    COMMSM5="./run -sm5 ${TFILE}.sm5 > ${TFILE}.ans"
+    if [ -f "${TFILE}.in" ]
+    then
+        COMM="${COMM} < ${TFILE}.in"
+        COMMSM5="${COMMSM5} < ${TFILE}.in"
+    fi
+
+    eval "${COMMSM5}"
+
+    if eval "${COMM}"
+    then
+        eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
+        result $?
+    else
+        echo "${WRONG}"
+    fi
+done
+
+echo "# Testing Rozetta: Sm5 -> Sonata (${WARNING} HARD)"
+
+for TC in "${HARDTESTCASES[@]}"
+do
+    TFILE="${TESTDIR}/test_hard${TC}"
     printf "Test %s..." "${TC}"
     COMM="./run ${TFILE}.sm5 > ${TFILE}.out"
     COMMSM5="./run -sm5 ${TFILE}.sm5 > ${TFILE}.ans"

@@ -1,2 +1,8 @@
-rozetta.ml
+*.ml
+!main.ml
+!sm5.mli
+!sonata.mli
+!parser.ml
+!sm5.ml
+!sonata.ml
 run

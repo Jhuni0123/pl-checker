@@ -1,0 +1,47 @@
+[push 2;
+malloc;
+bind x;
+push x;
+store;
+push 3;
+malloc;
+bind x;
+push x;
+store;
+push 5;
+malloc;
+bind x;
+push x;
+store;
+push 7;
+malloc;
+bind x;
+push x;
+store;
+push 11;
+malloc;
+bind x;
+push x;
+store;
+push (x,
+    [unbind;
+    pop;
+    unbind;
+    pop;
+    push x;
+    load;
+    put]
+    );
+push 1;
+malloc;
+call;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop]
