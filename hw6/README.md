@@ -9,3 +9,5 @@
 - `examples/test<num>.in`  : (입력이 필요한 경우만) 입력
 - `examples/test<num>.ans` : 정답
 - `examples/test<num>.out` : 출력
+
+- `examples/test_hard<num>.* : 통과하기 힘든 테스트케이스입니다. 점수에 영향이 없을지도 모릅니다.
