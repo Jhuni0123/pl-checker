@@ -1,0 +1,12 @@
+(* test case 25 : Record *)
+
+write (( {fst := 1, snd := 5, third := 10} ).fst);
+write (( {fst := 1, snd := 5, third := 10} ).snd);
+write (( {fst := 1, snd := 5, third := 10} ).third)
+
+
+(* output:
+1
+5
+10
+*)

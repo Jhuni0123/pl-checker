@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24)
+TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25)
 ATESTCASES=(1)
 TC2=(1 2 3 4 5 6 7 8 9 10)
 TC3=(1 2 3 4)
@@ -61,6 +61,7 @@ do
     eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
     result $?
 done
+echo ''
 
 echo "# Testing Exercise 2"
 for TC in "${TC2[@]}"
@@ -91,6 +92,7 @@ do
         echo "${CORRECT}"
     fi
 done
+echo ''
 
 echo "# Testing Exercise 3"
 for TC in "${TC3[@]}"
