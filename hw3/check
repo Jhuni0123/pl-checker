@@ -19,7 +19,13 @@ function result {
 }
 
 echo '# Compiling...'
-make
+if ! make
+then
+    echo ''
+    echo 'Compile fail.'
+    exit 1
+fi
+echo ''
 
 echo '# Testing k- interpreter'
 
