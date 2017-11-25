@@ -1,0 +1,61 @@
+#!/bin/bash
+
+TESTCASES=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+TESTDIR="examples"
+WRONG="$(tput setaf 1)✗$(tput sgr0)"
+CORRECT="$(tput setaf 2)✓$(tput sgr0)"
+WARNING="$(tput setaf 3)⚠$(tput sgr0)"
+
+
+function result {
+    if [ 0 -lt "$1"  ]
+    then
+        echo "${WRONG}"
+    else
+        echo "${CORRECT}"
+    fi
+}
+
+echo '# Compiling...'
+if ! make
+then
+    echo ''
+    echo 'Compile fail.'
+    exit 1
+fi
+echo ''
+
+echo "# Testing CPS-convert (${WARNING} Alpha ver. )"
+
+for TC in "${TESTCASES[@]}"
+do
+    TFILE="${TESTDIR}/test${TC}"
+    printf "Test %s..." "${TC}"
+
+    COMMCPS="./run -checkcps ${TFILE}.m"
+    COMMVAL="./run -checkval ${TFILE}.m"
+
+    FAIL=0
+
+    if ! eval "${COMMCPS}"
+    then
+        FAIL=1
+        FAILMSG="Wrong CPS-converted expression"
+    fi
+
+    if ! eval "${COMMVAL}"
+    then
+        FAIL=1
+        FAILMSG="Wrong result value"
+    fi
+
+    if [ 1 -eq ${FAIL} ]
+    then
+        echo "${WRONG} : ${FAILMSG}"
+        eval "./run -pp -pcps ${TFILE}.m"
+        echo '----------------------------------------'
+    else
+        echo "${CORRECT}"
+    fi
+done
+echo "(${WARNING} Alpha ver. CPS expression check is not reliable. )"

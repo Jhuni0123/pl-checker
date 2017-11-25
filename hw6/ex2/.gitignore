@@ -1,0 +1,10 @@
+*.ml
+!cps.mli
+!lexer.mll
+!m0.ml
+!m0.mli
+!main.ml
+!parser.mly
+
+run
+parser.mli
