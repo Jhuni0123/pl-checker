@@ -1,6 +1,6 @@
 # pl-checker
 2017년 가을학기 Programming Language 숙제 자동 채점기 <br>
-채점의 **자동화**를 목표로 하고있습니다. 최대한 많은 경우를 테스트 하게 하려고 노력하고 있지만 커버되지 않는 케이스가 있을 수 있습니다. 즉 여기 있는 테스트 케이스를 모두 통과해도 만점을 받는것을 보장하지 못합니다. <br>
+채점의 **자동화**를 목표로 하고있습니다. 최대한 많은 경우를 테스트 하게 하려고 노력하고 있지만 커버되지 않는 케이스가 있을 수 있습니다. 즉 여기 있는 테스트 케이스를 **모두 통과해도 만점을 받는것을 보장하지 못합니다.** <br>
 좋은 테스트케이스가 있다면 [이슈보드](https://github.com/Jhuni0123/pl-checker/issues)에 올려주신다면 최대한 빠르게 추가하겠습니다.
 
 # How to use
@@ -23,7 +23,7 @@ git pull --rebase origin master
 ```
 
 # Status
-- HW 6-3~ : TBD
+- HW 7~ : TBD
 
 # Thanks to
 - [kipa00](https://github.com/kipa00)
