@@ -11,6 +11,6 @@ let n := 10 in
   write fib(n)
 )
 (* output :
+5
 55
-610
 *)
