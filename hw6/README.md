@@ -10,7 +10,9 @@
 - `examples/test<num>.ans` : 정답
 - `examples/test<num>.out` : 출력
 
-- `examples/test_hard<num>.* : 통과하기 힘든 테스트케이스입니다. 점수에 영향이 없을지도 모릅니다.
+**hard testcase**
+k--를 번역하지 않고 직접 임의로 작성한 sm5 코드입니다. 점수에 영향이 없을지도 모릅니다.
+- `examples/test_hard<num>.*`
 
 ### 6-2 : CPS (`ex2/`)
 1. 구현한 `cps.ml`을 복사하거나 뼈대코드 `cps.ml.orig`을 `cps.ml`로 바꾼 후 구현합니다.
