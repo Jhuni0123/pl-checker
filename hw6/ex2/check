@@ -52,7 +52,7 @@ do
     if [ 1 -eq ${FAIL} ]
     then
         echo "${WRONG} : ${FAILMSG}"
-        eval "./run -pp -pcps ${TFILE}.m"
+        eval "./run -pp ${TFILE}.m"
         echo '----------------------------------------'
     else
         echo "${CORRECT}"
