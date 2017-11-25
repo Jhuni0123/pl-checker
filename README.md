@@ -23,7 +23,7 @@ git pull --rebase origin master
 ```
 
 # Status
-- HW 6-2~ : TBD
+- HW 6-3~ : TBD
 
 # Thanks to
 - [kipa00](https://github.com/kipa00)
