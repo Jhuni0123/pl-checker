@@ -1,0 +1,20 @@
+"-- integer --"
+true
+false
+"-- string --"
+true
+false
+"-- location --"
+true
+false
+true
+false
+false
+"-- boolean --"
+true
+true
+false
+false
+"-- associativity --"
+true
+true
