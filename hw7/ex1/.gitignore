@@ -1,7 +1,7 @@
+*.ml
 !error.ml
 !lexer.mll
 !main.ml
-!poly_checker.ml
 !pp.ml
 !m.ml
 !parser.mly
