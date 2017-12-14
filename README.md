@@ -12,7 +12,7 @@ cd hw<num>
 # please read README.md
 ./check
 ```
-[hw1](hw1) | [hw2](hw2) | [hw3](hw3) | [hw4](hw4) | [hw5](hw5) | [hw6](hw6)
+[hw1](hw1) | [hw2](hw2) | [hw3](hw3) | [hw4](hw4) | [hw5](hw5) | [hw6](hw6) | [hw7](hw7)
 
 # How to update
 **테스트케이스가 종종 업데이트 됩니다. 주기적으로 업데이트 해주세요!** <br>
@@ -23,7 +23,8 @@ git pull --rebase origin master
 ```
 
 # Status
-- HW 7~ : TBD
+- HW 7-1 : TA testcases
+- HW 7-2, 7-3 : TBD
 
 # Thanks to
 - [kipa00](https://github.com/kipa00)

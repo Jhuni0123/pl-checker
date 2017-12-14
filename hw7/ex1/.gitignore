@@ -1,0 +1,12 @@
+*.ml
+!error.ml
+!lexer.mll
+!main.ml
+!pp.ml
+!m.ml
+!parser.mly
+!poly_checker.mli
+run
+lexer.ml
+parser.ml
+parser.mli
