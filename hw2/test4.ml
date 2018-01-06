@@ -29,6 +29,12 @@ module TestEx4: TestEx =
       ; CHECK (CONNECT (AREA ("seoul", STATION "busan"), AREA ("busan", STATION "seoul")), false)
       ; CHECK (CONNECT (AREA ("a", STATION "a"), AREA ("b", AREA ("a", CONNECT (STATION "b", STATION "a")))), true)
       ; CHECK (CONNECT (AREA ("c", STATION "c"), AREA ("b", AREA ("a", CONNECT (STATION "b", STATION "c")))), false)
+      ; CHECK (AREA ("a", CONNECT (AREA ("b", STATION "a"), AREA("c", STATION "c"))), true)
+      ; CHECK (AREA ("a", CONNECT (AREA ("b", STATION "a"), AREA ("c", STATION "b"))), false)
+      ; CHECK (AREA ("a", CONNECT (AREA ("b", STATION "a"), AREA ("c", STATION "a"))), true)
+      ; CHECK (AREA ("a", AREA ("b", CONNECT (STATION "b", STATION "a"))), true)
+      ; CHECK (CONNECT (AREA ("b", CONNECT (STATION "b", AREA ("d", STATION "b"))), AREA ("e", STATION "e")), true)
+      ; CHECK (CONNECT (AREA ("b", CONNECT (STATION "b", AREA ("d", STATION "d"))), AREA ("e", STATION "b")), false)
       ]
 
     let rec string_of_metro m =

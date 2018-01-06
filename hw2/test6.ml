@@ -94,6 +94,35 @@ module TestEx6: TestEx =
         ; DEQ [1;2;3;4;5]
         ; DEQ_EMPTYQ
         ]
+      ; SEQ
+        [ ENQ [1]
+        ; DEQ [1]
+        ]
+      ; SEQ
+        [ ENQ [1]
+        ; ENQ [2]
+        ; DEQ [1]
+        ; DEQ [2]
+        ]
+      ; SEQ
+        [ ENQ [1]
+        ; ENQ [2]
+        ; DEQ [1]
+        ; ENQ [3]
+        ; ENQ [4]
+        ; DEQ [2]
+        ; DEQ [3]
+        ]
+      ; SEQ
+        [ ENQ [1]
+        ; DEQ [1]
+        ; ENQ [2]
+        ; ENQ [3]
+        ; DEQ [2]
+        ; ENQ [4]
+        ; DEQ [3]
+        ; DEQ [4]
+        ]
       ]
 
     let runner tc =

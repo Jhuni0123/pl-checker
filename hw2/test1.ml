@@ -43,6 +43,11 @@ module TestEx1: TestEx =
       ; EVAL (LESS (PLUS (NUM 10, NUM 12), MINUS (NUM 10, NUM (-13))), true)
       ; EVAL (NOT (ORELSE (IMPLY(TRUE, ANDALSO (TRUE, TRUE)), ANDALSO (TRUE, ANDALSO (TRUE, TRUE)))), false)
       ; EVAL (ORELSE (IMPLY(LESS (NUM (-10), NUM (-100)), ANDALSO (NOT TRUE, TRUE)), ANDALSO (TRUE, ANDALSO (LESS (NUM 10, PLUS (MINUS (NUM 10, NUM (-10)), NUM 30)), TRUE))), true)
+      ; EVAL (ANDALSO (ORELSE (TRUE, FALSE), NOT (IMPLY (TRUE, FALSE))), true)
+      ; EVAL (LESS (PLUS (NUM 3, NUM 5), PLUS (NUM 1, NUM 2)), false)
+      ; EVAL (LESS (MINUS (NUM 3, NUM 5), MINUS (NUM 1, NUM 2)), true)
+      ; EVAL (ORELSE (LESS (PLUS (MINUS (NUM 3, NUM 2), NUM 9), NUM 10), FALSE), false)
+      ; EVAL (IMPLY (LESS (NUM 1, NUM 0), ANDALSO (TRUE, ORELSE (NOT TRUE, LESS (NUM 2, NUM 1)))), true)
       ]
 
     let rec string_of_expr e =

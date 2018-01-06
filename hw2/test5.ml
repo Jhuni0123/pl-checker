@@ -67,6 +67,22 @@ module TestEx5: TestEx =
         ; GOUP (LOC (NODE [NODE [LEAF "a"; LEAF "*"; LEAF "b"]; LEAF "+"; NODE [LEAF "c"; LEAF "*"; LEAF "d"]; LEAF "-"; NODE [LEAF "e"; LEAF "/"; LEAF "f"]], HAND ([], TOP, [LEAF "*"; NODE [LEAF "g"; LEAF "+"; LEAF "h"]])))
         ]
       )
+      ; TREE
+      (NODE [LEAF "1"; LEAF "2"; LEAF "3"; LEAF "4"],
+        [ GODOWN (LOC (LEAF "1", HAND ([], TOP, [LEAF "2"; LEAF "3"; LEAF "4"])))
+        ; NOMOVE_LEFT
+        ; GORIGHT (LOC (LEAF "2", HAND ([LEAF "1"], TOP, [LEAF "3"; LEAF "4"])))
+        ; GORIGHT (LOC (LEAF "3", HAND ([LEAF "2"; LEAF "1"], TOP, [LEAF "4"])))
+        ]
+      )
+      ; TREE
+      ( NODE [LEAF "A"; LEAF "B"; LEAF "C"],
+        [ GODOWN (LOC (LEAF "A", HAND ([], TOP, [LEAF "B"; LEAF "C"])))
+        ; GORIGHT (LOC (LEAF "B", HAND ([LEAF "A"], TOP, [LEAF "C"])))
+        ; GORIGHT (LOC (LEAF "C", HAND ([LEAF "B"; LEAF "A"], TOP, [])))
+        ; GOLEFT (LOC (LEAF "B", HAND ([LEAF "A"], TOP, [LEAF "C"])))
+        ]
+      )
       ]
 
     let rec height_of_tree t =
