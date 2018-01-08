@@ -7,3 +7,5 @@ lexer.ml
 *.out
 *.k--
 !examples/*.k--
+*.txt
+gc

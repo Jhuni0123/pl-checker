@@ -51,30 +51,16 @@ do
     fi
 done
 
+
+echo ''
+echo '# Compiling gc test...'
+if ! ocamlc unix.cma -I ../lib/ ../lib/testlib.ml sm5.ml gc_test.ml -o gc
+then
+    echo ''
+    echo 'Compile fail.'
+    exit 1
+fi
+echo ''
+
 echo '# Testing SM5 Limited: gc'
-echo "${WARNING} These testcases are weak!! Please test the other testcases."
-
-for TC in "${GC_TESTCASES[@]}"
-do
-    TFILE="${TESTDIR}/testgc${TC}"
-    printf "Test %s..." "${TC}"
-    COMM="./run -gc ${TFILE}.k-- > ${TFILE}.out"
-    COMMK="./run -k ${TFILE}.k-- > ${TFILE}.ans"
-    if [ -f "${TFILE}.in" ]
-    then
-        COMM="${COMM} < ${TFILE}.in"
-        COMMK="${COMMK} < ${TFILE}.in"
-    fi
-
-    eval "${COMMK}"
-
-    if eval "${COMM}"
-    then
-        eval "diff ${TFILE}.ans ${TFILE}.out > /dev/null"
-        result $?
-    else
-        echo "${WRONG}"
-    fi
-done
-
-ocamlc sm5.ml gc_test.ml && ./a.out
+./gc

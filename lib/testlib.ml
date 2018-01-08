@@ -7,20 +7,20 @@ let wrong_symbol =
   "\x1b[31m✗\x1b[0m"
 
 let test_testcase num tc runner string_of_tc =
-  if runner tc then printf "%s Test %d\n" correct_symbol num
+  if runner tc then printf "%s Test %d\n%!" correct_symbol num
   else
     let (tc_s, ans_s, output_s) = string_of_tc tc in
-    printf "%s Test %d: %s\n  answer: %s, output: %s\n" wrong_symbol num tc_s ans_s output_s
+    printf "%s Test %d: %s\n  answer: %s, output: %s\n%!" wrong_symbol num tc_s ans_s output_s
 
 let test_testcase2 num tc runner result_of_tc print_res =
-  if runner tc then printf "%s Test %d\n" correct_symbol num
+  if runner tc then printf "%s Test %d\n%!" correct_symbol num
   else
     let (tc_s, ans, out) = result_of_tc tc in
-    let _ = printf "%s Test %d: %s\n  answer: " wrong_symbol num tc_s in
+    let _ = printf "%s Test %d: %s\n  answer: %!" wrong_symbol num tc_s in
     let _ = print_res ans in
     let _ = print_string ", output: " in
     let _ = print_res out in
-    print_string "\n"
+    print_newline ()
 
 let test_exercise tcs runner string_of_tc =
   let rec test_exercise_ tcnum tcs runner =

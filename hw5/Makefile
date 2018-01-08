@@ -37,4 +37,4 @@ lexer.ml: lexer.mll parser.cmo
 	ocamllex lexer.mll
 
 clean:
-	rm -f *.cmx *.cmi parser.mli parser.ml lexer.ml run *.o *.cmo
+	rm -f *.cmx *.cmi parser.mli parser.ml lexer.ml run *.o *.cmo gc stdout_redirect.txt
