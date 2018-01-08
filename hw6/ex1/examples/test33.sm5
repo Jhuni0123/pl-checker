@@ -1,0 +1,155 @@
+[push (n,
+  [bind numch;
+  push (n,
+    [bind numch1;
+    push 1;
+    unbind;
+    pop]
+    );
+  bind numch1;
+  push (n,
+    [bind numch10;
+    push n;
+    load;
+    push 10;
+    less;
+    jtr (
+      [push numch1;
+      push numch1;
+      push n;
+      load;
+      malloc;
+      call],
+      [push numch1;
+      push numch1;
+      push n;
+      load;
+      malloc;
+      call;
+      push numch10;
+      push numch10;
+      push n;
+      load;
+      push 10;
+      sub;
+      malloc;
+      call;
+      add]);
+    unbind;
+    pop]
+    );
+  bind numch10;
+  push (n,
+    [bind numch100;
+    push n;
+    load;
+    push 100;
+    less;
+    jtr (
+      [push numch10;
+      push numch10;
+      push n;
+      load;
+      malloc;
+      call],
+      [push numch10;
+      push numch10;
+      push n;
+      load;
+      malloc;
+      call;
+      push numch100;
+      push numch100;
+      push n;
+      load;
+      push 100;
+      sub;
+      malloc;
+      call;
+      add]);
+    unbind;
+    pop]
+    );
+  bind numch100;
+  push (n,
+    [bind numch500;
+    push n;
+    load;
+    push 500;
+    less;
+    jtr (
+      [push numch100;
+      push numch100;
+      push n;
+      load;
+      malloc;
+      call],
+      [push numch100;
+      push numch100;
+      push n;
+      load;
+      malloc;
+      call;
+      push numch500;
+      push numch500;
+      push n;
+      load;
+      push 500;
+      sub;
+      malloc;
+      call;
+      add]);
+    unbind;
+    pop]
+    );
+  bind numch500;
+  push numch500;
+  push numch500;
+  push n;
+  load;
+  malloc;
+  call;
+  unbind;
+  pop;
+  unbind;
+  pop;
+  unbind;
+  pop;
+  unbind;
+  pop;
+  unbind;
+  pop]
+  );
+bind numch;
+push 0;
+malloc;
+bind input;
+push input;
+store;
+get;
+push input;
+store;
+push input;
+load;
+pop;
+malloc;
+bind #write_var;
+push numch;
+push numch;
+push input;
+load;
+malloc;
+call;
+push #write_var;
+store;
+push #write_var;
+load;
+put;
+push #write_var;
+load;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop]

@@ -1,0 +1,20 @@
+(* 8. Recursion nested in a function *)
+
+let prev_glob := 0 in
+(* Prints fibonacci number less then 'x' *)
+let proc print_fib(x) =
+  let proc print_fib_helper(cur) =
+    if cur < x then (
+      let prev_tmp := prev_glob in
+      write cur;
+      prev_glob := cur;
+      print_fib_helper(cur + prev_tmp)
+    )
+    else
+      ()
+  in
+  print_fib_helper(1)
+in
+let x := 0 in
+read x;
+print_fib (x)

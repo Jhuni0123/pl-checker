@@ -1,0 +1,55 @@
+[push (x,
+  [bind fac;
+  push x;
+  load;
+  push 1;
+  eq;
+  jtr (
+    [push 1],
+    [push x;
+    load;
+    push fac;
+    push fac;
+    push x;
+    load;
+    push 1;
+    sub;
+    malloc;
+    call;
+    mul]);
+  unbind;
+  pop]
+  );
+bind fac;
+push 0;
+malloc;
+bind y;
+push y;
+store;
+get;
+push y;
+store;
+push y;
+load;
+pop;
+malloc;
+bind #write_var;
+push fac;
+push fac;
+push y;
+load;
+malloc;
+call;
+push #write_var;
+store;
+push #write_var;
+load;
+put;
+push #write_var;
+load;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop]

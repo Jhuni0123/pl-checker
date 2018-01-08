@@ -1,0 +1,11 @@
+(* 3. Simple Recursion 1 *)
+
+let proc fac (x) =
+    if x = 1 then
+        1
+    else x * fac (x-1) in
+let y := 0 in
+(
+    read y;
+    write (fac (y))
+)

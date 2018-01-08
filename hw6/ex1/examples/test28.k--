@@ -1,0 +1,14 @@
+(* 2. Simple call by reference *)
+
+let proc foo(x) =
+  let proc bar(x) =
+    x := x * 2
+  in
+  (bar<x>; x := x + 1)
+in
+let z := 0 in
+(
+    read z;
+    foo <z>;
+    write z
+)

@@ -1,0 +1,187 @@
+[push (x,
+  [bind print;
+  malloc;
+  bind #write_var;
+  push x;
+  load;
+  push #write_var;
+  store;
+  push #write_var;
+  load;
+  put;
+  push #write_var;
+  load;
+  unbind;
+  pop;
+  unbind;
+  pop]
+  );
+bind print;
+push (x,
+  [bind print_err;
+  malloc;
+  bind #write_var;
+  push 0;
+  push #write_var;
+  store;
+  push #write_var;
+  load;
+  put;
+  push #write_var;
+  load;
+  unbind;
+  pop;
+  pop;
+  push print;
+  push print;
+  push x;
+  load;
+  malloc;
+  call;
+  unbind;
+  pop]
+  );
+bind print_err;
+push (x,
+  [bind print_msg;
+  malloc;
+  bind #write_var;
+  push 1;
+  push #write_var;
+  store;
+  push #write_var;
+  load;
+  put;
+  push #write_var;
+  load;
+  unbind;
+  pop;
+  pop;
+  push print;
+  push print;
+  push x;
+  load;
+  malloc;
+  call;
+  unbind;
+  pop]
+  );
+bind print_msg;
+push (x,
+  [bind f;
+  push x;
+  load;
+  push 20;
+  less;
+  jtr (
+    [push print_msg;
+    push print_msg;
+    push x;
+    load;
+    malloc;
+    call],
+    [push print_err;
+    push print_err;
+    push x;
+    load;
+    malloc;
+    call]);
+  unbind;
+  pop]
+  );
+bind f;
+push (y,
+  [bind g;
+  push 20;
+  push y;
+  load;
+  less;
+  jtr (
+    [push print_msg;
+    push print_msg;
+    push y;
+    load;
+    malloc;
+    call],
+    [push print_err;
+    push print_err;
+    push y;
+    load;
+    malloc;
+    call]);
+  unbind;
+  pop]
+  );
+bind g;
+push (z,
+  [bind h;
+  push f;
+  push f;
+  push z;
+  load;
+  push 5;
+  sub;
+  malloc;
+  call;
+  pop;
+  push f;
+  push f;
+  push z;
+  load;
+  push 5;
+  add;
+  malloc;
+  call;
+  pop;
+  push g;
+  push g;
+  push z;
+  load;
+  push 5;
+  sub;
+  malloc;
+  call;
+  pop;
+  push g;
+  push g;
+  push z;
+  load;
+  push 5;
+  add;
+  malloc;
+  call;
+  unbind;
+  pop]
+  );
+bind h;
+push 0;
+malloc;
+bind x;
+push x;
+store;
+get;
+push x;
+store;
+push x;
+load;
+pop;
+push h;
+push h;
+push x;
+load;
+malloc;
+call;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop;
+unbind;
+pop]

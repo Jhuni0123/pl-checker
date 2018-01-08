@@ -1,0 +1,10 @@
+(* 6. Call by reference with nested call *)
+
+let proc f(x) = (x := x + 9) in
+let proc g(y) = (f<y>; y := y + 10) in
+let z := 0 in
+(
+    read z;
+    g<z>;
+    write z
+)

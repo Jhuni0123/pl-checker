@@ -1,0 +1,32 @@
+(* 10. Two functions calling common function *)
+
+let proc print (x) = write x in
+let proc print_err (x) =
+  write 0;
+  print (x)
+in
+let proc print_msg (x) =
+  write 1;
+  print (x)
+in
+let proc f (x) =
+  if (x < 20) then
+    print_msg (x)
+  else
+    print_err (x)
+in
+let proc g (y) =
+  if (20 < y) then
+    print_msg (y)
+  else
+    print_err (y)
+in
+let proc h (z) =
+  f(z - 5);
+  f(z + 5);
+  g(z - 5);
+  g(z + 5)
+in
+let x := 0 in
+read x;
+h (x)

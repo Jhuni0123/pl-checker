@@ -1,0 +1,88 @@
+[push (x,
+  [bind f;
+  push (y,
+    [bind g;
+    push (z,
+      [bind h;
+      push z;
+      load;
+      push 0;
+      less;
+      jtr (
+        [push z;
+        load],
+        [malloc;
+        bind #write_var;
+        push z;
+        load;
+        push #write_var;
+        store;
+        push #write_var;
+        load;
+        put;
+        push #write_var;
+        load;
+        unbind;
+        pop;
+        pop;
+        push f;
+        push f;
+        push z;
+        load;
+        push 1;
+        sub;
+        malloc;
+        call]);
+      unbind;
+      pop]
+      );
+    bind h;
+    push h;
+    push h;
+    push y;
+    load;
+    push 1;
+    sub;
+    malloc;
+    call;
+    unbind;
+    pop;
+    unbind;
+    pop]
+    );
+  bind g;
+  push g;
+  push g;
+  push x;
+  load;
+  push 1;
+  sub;
+  malloc;
+  call;
+  unbind;
+  pop;
+  unbind;
+  pop]
+  );
+bind f;
+push 0;
+malloc;
+bind x;
+push x;
+store;
+get;
+push x;
+store;
+push x;
+load;
+pop;
+push f;
+push f;
+push x;
+load;
+malloc;
+call;
+unbind;
+pop;
+unbind;
+pop]

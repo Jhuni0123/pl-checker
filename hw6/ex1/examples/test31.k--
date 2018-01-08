@@ -1,0 +1,9 @@
+(* 5. Call by value with nested call *)
+
+let proc inc(x) = (x + 1) in
+let proc f(x) = inc(x) * inc(x) in
+let y := 0 in
+(
+    read y;
+    write f(y)
+)

@@ -1,0 +1,12 @@
+(* 4. Simple Recursion 2 *)
+
+let proc fib (x) =
+    if x < 2 then
+        1
+    else fib (x-2) + fib (x-1)
+in
+(
+  let y := 0 in
+  read y;
+  write (fib(y))
+)

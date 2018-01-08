@@ -1,0 +1,24 @@
+(* 7. Numch revisited *)
+
+let proc numch(n) =
+  let proc numch1(n) = 1
+  in
+  let proc numch10(n) =
+    if n<10 then numch1(n)
+    else numch1(n) + numch10(n-10)
+  in
+  let proc numch100(n) =
+    if n<100 then numch10(n)
+    else numch10(n) + numch100(n-100)
+  in
+  let proc numch500(n) =
+    if n<500 then numch100(n)
+    else numch100(n) + numch500(n-500)
+  in
+  numch500(n)
+in
+(
+  let input := 0 in
+  read input;
+  write numch(input)
+)

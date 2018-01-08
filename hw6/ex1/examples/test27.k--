@@ -1,0 +1,11 @@
+(* 1. Simple call by value *)
+
+let proc succ (x) = x + 1 in
+let proc square (x) = x * x in
+let z := 0 in
+(
+  read z;
+  z := square(z);
+  z := succ(z);
+  write z
+)

@@ -1,0 +1,11 @@
+(* 9. Recursion inside recursive function *)
+
+let proc sum (n) =
+  if n < 1 then 0 else n + sum (n - 1)
+in
+let proc diag (x) =
+  if x < 1 then 0 else (sum (x)) + diag (x - 1)
+in
+let x := 0 in
+read x;
+write (diag (x))

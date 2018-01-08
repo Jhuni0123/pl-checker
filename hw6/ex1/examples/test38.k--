@@ -1,0 +1,19 @@
+(* 12. Call cycle between three functions *)
+
+let proc f (x) =
+  let proc g (y) =
+    let proc h (z) =
+      if z < 0 then
+        z
+      else (
+        write (z);
+        f (z-1)
+      )
+    in
+    h (y-1)
+  in
+  g (x - 1)
+in
+let x := 0 in
+read x;
+f (x)
