@@ -298,6 +298,74 @@ module TestEx2: TestEx =
           ; (E, [1;2;3])
           ]
         )
+      ; SHOP
+        ( [ (A, [Same B])
+          ; (B, [Same A])
+          ; (C, [])
+          ; (D, [])
+          ; (E, [])
+          ]
+        , [ (A, [])
+          ; (B, [])
+          ; (C, [])
+          ; (D, [])
+          ; (E, [])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [1]; Same B])
+          ; (B, [Items [1]; Same C])
+          ; (C, [Items [1]; Same A])
+          ]
+        , [ (A, [1])
+          ; (B, [1])
+          ; (C, [1])
+          ; (D, [])
+          ; (E, [])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [1]; Same B])
+          ; (B, [Same C])
+          ; (C, [Same B])
+          ; (D, [Same A; Common (Same B, Same C)])
+          ; (E, [Same A; Same D])
+          ]
+        , [ (A, [1])
+          ; (B, [])
+          ; (C, [])
+          ; (D, [1])
+          ; (E, [1])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [1]; Except (Same B, [1])])
+          ; (B, [Items [2]; Except (Same C, [2])])
+          ; (C, [Items [3]; Except (Same D, [3])])
+          ; (D, [Items [4]; Except (Same E, [4])])
+          ; (E, [Items [5]; Except (Same A, [5])])
+          ]
+        , [ (A, [1;2;3;4;5])
+          ; (B, [1;2;3;4;5])
+          ; (C, [1;2;3;4;5])
+          ; (D, [1;2;3;4;5])
+          ; (E, [1;2;3;4;5])
+          ]
+        )
+      ; SHOP
+        ( [ (A, [Items [1; 2]; Common (Same B, Same C)])
+          ; (B, [Common (Same C, Items [2;3])])
+          ; (C, [Items [1]; Except (Same A, [3])])
+          ; (D, [Common (Same A, Same B)])
+          ; (E, [Common (Same A, Same C)])
+          ]
+        , [ (A, [1;2])
+          ; (B, [2])
+          ; (C, [1;2])
+          ; (D, [2])
+          ; (E, [1;2])
+          ]
+        )
       ]
 
     let string_of_id x =
